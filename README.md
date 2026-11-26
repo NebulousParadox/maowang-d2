@@ -40,11 +40,17 @@ $$q^\ast(t)=(1+\sqrt2)t^2+\sqrt2\,t+1,\qquad q_b(t)=(1-\sqrt2)t^2-\sqrt2\,t+1.$$
 | 11 | For $n\le 60$, after mapping zeros to $\theta$, each slice of width $\pi/(n+2)$ holds at most one zero | Numerical | Colab output (not saved) |
 | 12 | Forgács–Tran ([1606.07125](https://arxiv.org/abs/1606.07125), [1601.02582](https://arxiv.org/abs/1601.02582)) do not apply directly, for three reasons. (a) The numerator is $1-t$. (b) The $x$-part has several terms. (c) $P$ has the negative zero $-1-\sqrt2$, and their result only covers large $n$. | Checked | — |
 
-## Plan: Stage C (in progress)
+## Stage C: claimed proof for all $n$ (26 Nov 2026)
 
-Let $x_k(n)=\theta^{-1}\!\big(k\pi/(n+2)\big)$ for $k=1,\dots,n+1$.
+**Claim.** Every $G_n$ is real-rooted with negative zeros. This would settle the $D^2$ half of Conjecture 4.1. See [`STAGE_C.md`](STAGE_C.md).
 
-The goal is to prove that $\operatorname{sign} G_n(x_k(n))$ alternates in $k$ for all $n\ge N_0$, with $N_0$ given explicitly. Rows $n\le 91$ are already verified exactly, so **any explicit $N_0\le 91$ completes the $D^2$ half of the conjecture.**
+- **$n\ge10$:** covered by an interval-arithmetic certificate. It **passed on two independent platforms** (Node/V8 locally, Python/glibc on Colab) with identical output.
+- **$n\le91$:** exact Sturm count.
+- **Exact identities:** all pass in sympy.
+- **New exact fact:** $G_n(-1)=0$ for every $n\equiv2\pmod4$. Because of this, the original "alternation" goal fails at $x=-1$, and the statement was corrected to account for it.
+- **Still pending:**
+  - a referee report on the reasoning (requested);
+  - removing the libm accuracy assumption, by rerunning with rigorous interval arithmetic.
 
 ## Side target: SymCat #19 (skew Schur Ehrhart $h^\ast$-polynomials)
 
@@ -58,6 +64,8 @@ Our definition still needs checking against SymCat's exact wording. See [`shots/
 |------|----------|
 | [`PROOF_angle_lemma.md`](PROOF_angle_lemma.md) | Proof of items 6, 7, 9 and 10 |
 | [`REFEREE_1.md`](REFEREE_1.md) | Referee report on that proof |
+| [`STAGE_C.md`](STAGE_C.md) | Stage C: claimed proof for all $n$, with the verification log |
+| [`stageC/`](stageC/) | Stage C certificate (Node and Python) and the exact sympy checks |
 | [`scripts/`](scripts/) | Exact checks: rows to 91, and verification of the lemma's algebra |
 | [`opus/`](opus/) | Opus's original verification scripts |
 | [`shots/`](shots/) | Screenshots of each computation |
