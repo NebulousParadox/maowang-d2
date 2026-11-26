@@ -49,10 +49,10 @@ $$q^\ast(t)=(1+\sqrt2)t^2+\sqrt2\,t+1,\qquad q_b(t)=(1-\sqrt2)t^2-\sqrt2\,t+1.$$
 - **Exact identities:** all pass in sympy.
 - **New exact fact:** $G_n(-1)=0$ for every $n\equiv2\pmod4$. Because of this, the original "alternation" goal fails at $x=-1$, and the statement was corrected to account for it.
 - **Referee report 2:** the reasoning is **correct**. Nothing is fatal; there are two gaps in the write-up to fix. See [`REFEREE_2.md`](REFEREE_2.md).
-- **Still pending:**
-  - remove the libm accuracy assumption by rerunning with rigorous interval arithmetic;
-  - fold in the referee's fixes to the write-up;
-  - get an external expert review (the prover and both referees are AI).
+- **Rigorous certificate (python-flint / Arb balls, every operation certified):** **PASSED** for all $N\ge12$ on Colab (27 Nov 2026), so the libm assumption is gone. The script is `stageC/stageC_cert_rigorous.py`.
+- **Final write-up:** [`STAGE_C_FINAL.md`](STAGE_C_FINAL.md), with the referee's fixes folded in.
+- **Lean:** see the feasibility note, [`LEAN_FEASIBILITY.md`](LEAN_FEASIBILITY.md).
+- **Still pending:** an external review by a human expert. The prover and both referees are AI.
 
 ## Side target: SymCat #19 (skew Schur Ehrhart $h^\ast$-polynomials)
 
