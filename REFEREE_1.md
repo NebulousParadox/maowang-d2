@@ -22,7 +22,7 @@ Steps 1, 2, 4b, 4c, 4d and 5 hold as written.
 
 **F3 (statement at $x^\ast$).** The statement needs a fixed convention at $x^\ast$.
 
-*Adopted convention.* There is a strict modulus gap on $(a,b)\setminus\{x^\ast\}$. At $x^\ast$, both double roots have modulus $(\sqrt2-1)^{1/2}$. Counted without multiplicity, $\{c,\bar c\}$ is the unique smallest pair. Stage C must allow for this double root.
+*Adopted convention.* There is a strict modulus gap on $(a,b)\setminus\lbrace x^\ast\rbrace $. At $x^\ast$, both double roots have modulus $(\sqrt2-1)^{1/2}$. Counted without multiplicity, $\lbrace c,\bar c\rbrace $ is the unique smallest pair. Stage C must allow for this double root.
 
 ## Cosmetic
 

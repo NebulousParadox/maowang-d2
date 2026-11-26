@@ -15,7 +15,7 @@
   - These satisfy $x^\ast b=1$.
 - The quadratics:
 
-$$q^\ast(t)=(1+\sqrt2)t^2+\sqrt2\,t+1,\qquad q_b(t)=(1-\sqrt2)t^2-\sqrt2\,t+1.$$
+$$q^\ast(t)=(1+\sqrt2)t^2+\sqrt2\ t+1,\qquad q_b(t)=(1-\sqrt2)t^2-\sqrt2\ t+1.$$
 
 - The maps:
 
@@ -54,7 +54,7 @@ $$\mathrm{Den}(x^\ast,t)=q^\ast(t)^2,\qquad \mathrm{Den}(b,t)=q_b(t)^2.$$
 
 **S2 (two-squares identity).** In general, $\mathrm{Den}$ is a blend of these two squares:
 
-$$(b-x^\ast)\,\mathrm{Den}(x,t)=(b-x)\,q^\ast(t)^2+(x-x^\ast)\,q_b(t)^2.$$
+$$(b-x^\ast)\ \mathrm{Den}(x,t)=(b-x)\ q^\ast(t)^2+(x-x^\ast)\ q_b(t)^2.$$
 
 So for $x\ne b$, $\mathrm{Den}=0\iff\psi(t)^2=\kappa(x)$.
 
@@ -99,7 +99,7 @@ $$\cos^2\theta_1=\frac{(1+v)^2}{2(1-v)(\alpha+\beta v)},$$
 
 - **4a.** The upper roots lie on
 
-$$\Gamma=\{\operatorname{Re}(q^\ast(t)\overline{q_b(t)})=0,\ \operatorname{Im}t>0\}.$$
+$$\Gamma=\lbrace \operatorname{Re}(q^\ast(t)\overline{q_b(t)})=0,\ \operatorname{Im}t>0\rbrace .$$
 
 - **4b.** In polar form $t=\tau e^{i\theta}$, writing $\gamma=\cos\theta$, the curve $\Gamma$ becomes
 

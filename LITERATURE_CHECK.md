@@ -23,13 +23,16 @@
 
 ## Conclusion
 
-- **We are not first.** Davis's pipeline produced a complete $D^2$ argument and an internal review of it on **21 Nov 2026**. Our work started on 25 Nov 2026.
-- Her argument is **not published**:
+- **We are not first.**
+  - Davis's proof file is dated **20 Nov 2026**, and her pipeline reported it as internally reviewed on 21 Nov.
+  - Our work started on 25 Nov 2026.
+- Her argument is public on her `research` branch, but it is **not formally published**:
   - It is not in her results list.
   - SymCat still lists the conjecture as open.
   - Her issue calls it "uncounted", because the joint conjecture also needs $A^2$.
-  - Its method is unknown; the argument itself was not found in her public repo.
-- **Our proof was found independently**, without knowledge of hers. If her method is different, that has some value in itself. It is not a priority claim.
+- **Our proof was found independently**, without knowledge of hers, and by a different method (compared below). That has some value as independent confirmation. It is not a priority claim.
+
+
 ## Method comparison (Davis's `research/mao-wang/delannoy-proof.md`, dated 20 Nov 2026)
 
 | | Davis | Ours |

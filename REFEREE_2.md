@@ -1,5 +1,7 @@
 # Referee report 2: Stage C
 
+> **Later update (27 Nov 2026):** the libm assumption discussed below has since been removed by the rigorous Arb certificate, and the write-up fixes are folded into [`STAGE_C_FINAL.md`](STAGE_C_FINAL.md).
+
 - **Date:** 26 Nov 2026
 - **Referee:** a separate Claude Opus 5.5 session. It refereed the reasoning and checked it against what `cert.mjs` and `run_cert.mjs` actually do.
 

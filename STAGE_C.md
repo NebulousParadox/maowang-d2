@@ -29,11 +29,11 @@
 
 Partial fractions give
 
-$$G_n=-2\operatorname{Re}\!\left[u_1t_1^{-N}+u_2t_2^{-N}\right].$$
+$$G_n=-2\operatorname{Re}\left[u_1t_1^{-N}+u_2t_2^{-N}\right].$$
 
 At $\theta_1=k\pi/N$ we have $t_1^{-N}=(-1)^k\rho_1^{-N}$. So
 
-$$G_n(x_k)=(-1)^{k+1}\rho_1^{-N}\,[\,m+E\,],\qquad m=2\operatorname{Re}u_1,\quad |E|\le 2|u_2|\,(\rho_1/\rho_2)^N.$$
+$$G_n(x_k)=(-1)^{k+1}\rho_1^{-N}\ [\ m+E\ ],\qquad m=2\operatorname{Re}u_1,\quad |E|\le 2|u_2|\ (\rho_1/\rho_2)^N.$$
 
 ## C2. The original goal is false
 
@@ -74,11 +74,11 @@ The certificate uses outward rounding. `exp`, `cos` and `sin` are widened by 4 u
 
 The exact formula used in the $x^\ast$ window:
 
-$$G_n(x_k)=(-1)^{k+1}\frac{\rho_1^{-N}}{K}\,\Psi_N,\qquad \Psi_N=\operatorname{Re}\frac{U(\lambda)-U(-\lambda)e^{-N\ell(\lambda)}}{\lambda},$$
+$$G_n(x_k)=(-1)^{k+1}\frac{\rho_1^{-N}}{K}\ \Psi_N,\qquad \Psi_N=\operatorname{Re}\frac{U(\lambda)-U(-\lambda)e^{-N\ell(\lambda)}}{\lambda},$$
 
 where
 
-$$K=\frac{b-x}{4\sqrt2},\qquad U(\lambda)=\frac{(1-t)\,t}{q_b(t)\,\big(q^{\ast\prime}(t)-\lambda q_b'(t)\big)},\qquad \ell(\lambda)=\log\frac{t(-\lambda)}{t(\lambda)}.$$
+$$K=\frac{b-x}{4\sqrt2},\qquad U(\lambda)=\frac{(1-t)\ t}{q_b(t)\ \big(q^{\ast\prime}(t)-\lambda q_b'(t)\big)},\qquad \ell(\lambda)=\log\frac{t(-\lambda)}{t(\lambda)}.$$
 
 ## C8. Small $n$ (exact)
 

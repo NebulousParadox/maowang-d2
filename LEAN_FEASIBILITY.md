@@ -7,7 +7,7 @@ There is no Lean toolchain on the machine where this was written, so **every cod
 | Part | Feasible now? | Approach | Rough size |
 |---|---|---|---|
 | $G_n(-1)=0$ for $n\equiv2\pmod4$ | **Yes, easy** | Integer recurrence plus $\chi(y)\chi(-y)=y^8+14y^4+1$, giving $g_{n+8}=-14g_{n+4}-g_n$; then induction from $g_2=g_6=0$ | under 50 lines |
-| Exact identities (factorisation, $\mathrm{Den}(x^*,\cdot)=q_*^2$, $\mathrm{Den}(b,\cdot)=q_b^2$, $q_*q_b=-(t^4+4t^3-1)$, $\theta(-1)=\pi/4$) | **Yes** | Polynomial identities over $\mathbb R$ with $\sqrt2,\sqrt6$; `linear_combination` / `ring_nf` with `Real.sq_sqrt`, or computation in $\mathbb Q(\sqrt2)$ | 100–300 lines |
+| Exact identities (factorisation, $\mathrm{Den}(x^\ast,\cdot)=q_\ast^2$, $\mathrm{Den}(b,\cdot)=q_b^2$, $q_\astq_b=-(t^4+4t^3-1)$, $\theta(-1)=\pi/4$) | **Yes** | Polynomial identities over $\mathbb R$ with $\sqrt2,\sqrt6$; `linear_combination` / `ring_nf` with `Real.sq_sqrt`, or computation in $\mathbb Q(\sqrt2)$ | 100–300 lines |
 | The discriminant formula | Yes, if the discriminant is *defined* by the explicit quartic formula | `ring` on a degree-6 polynomial in $x$ | small, but `ring` may be slow |
 | Counting and parity (C3): $n-1$ sign changes plus real coefficients imply all $n$ zeros are real; positive coefficients imply they are negative | **Yes** | IVT (`intermediate_value_Ioo`); divide by $\prod(X-r_i)$ (`Polynomial.prod_multiset_X_sub_C_dvd`); a real polynomial of degree 1 has a real root | 200–400 lines |
 | Small $n$ (here $n\le11$; could go to $n\le91$) | **Yes** | Exhibit rational points; `norm_num` gives the exact signs, then use the counting lemma | per $n$; up to 91 needs automation or `native_decide` (trusts the compiler) |

@@ -2,62 +2,73 @@
 
 ## Summary
 
-**Theorem.** For every $n$, the row polynomial $G_n(x)$ of the squared Delannoy triangle $D^2$ has only real, negative zeros. This is the $D^2$ half of Conjecture 4.1 in Mao & Wang, [arXiv:2607.01572](https://arxiv.org/abs/2607.01572).
+**Theorem.** For every $n\ge0$, the row polynomial $G_n(x)$ of the squared Delannoy triangle $D^2$ has only real, negative zeros. This is the $D^2$ half of Conjecture 4.1 in Mao & Wang, *The Narayana transformation*, [arXiv:2607.01572](https://arxiv.org/abs/2607.01572).
 
 **Priority.** This is **not the first proof.**
-- Cinna Davis's pipeline completed a short, fully analytic proof on 20 Nov 2026: [`research/mao-wang/delannoy-proof.md`](https://github.com/1337isnot1337/solved-conjectures/blob/research/research/mao-wang/delannoy-proof.md).
-- That proof completes a strategy that the omega-institute had already sketched publicly in October 2026.
-- **The proof here was found independently**, between 25 and 27 Nov 2026, with no knowledge of either, and **by a different method.** See [`LITERATURE_CHECK.md`](LITERATURE_CHECK.md) for the timeline and a side-by-side comparison.
+- Cinna Davis's pipeline completed a short, fully analytic proof on 20 Nov 2026: [`delannoy-proof.md`](https://github.com/1337isnot1337/solved-conjectures/blob/research/research/mao-wang/delannoy-proof.md).
+- That proof completes a strategy the omega-institute had sketched publicly in October 2026.
+- The proof here was found **independently** (25–27 Nov 2026), without knowledge of either, and **by a different method.** [`LITERATURE_CHECK.md`](LITERATURE_CHECK.md) gives the timeline and a side-by-side comparison.
 
-**Method in one paragraph.**
-1. $\sum_n G_nt^n=(1-t)/\mathrm{Den}(x,t)$, where $\mathrm{Den}$ is a quartic, and a two-squares identity controls its roots.
-2. An angle lemma shows that the dominant root's argument sweeps monotonically from $\pi$ to $0$ across $(a,b)$.
-3. Partial fractions give $G_n$ at $n+1$ sample points as $(\pm)\,[m+E]$. A rigorous Arb interval-arithmetic certificate shows $\lvert m\rvert>\lvert E\rvert$ for all $n\ge10$.
-4. This yields $n-1$ sign changes, a parity argument gives the last real zero, and positive coefficients make all zeros negative.
-5. Rows $n\le91$ are checked by exact Sturm sequences.
+**Method.**
+1. $\sum_n G_nt^n=(1-t)/\mathrm{Den}(x,t)$, where $\mathrm{Den}$ is a quartic in $t$. A two-squares identity controls its roots.
+2. An angle lemma shows that the argument of the dominant root decreases monotonically from $\pi$ to $0$ across $(a,b)$.
+3. Partial fractions express $G_n$ at $n+1$ sample points as $\pm\rho^{-N}(m+E)$. A rigorous Arb interval-arithmetic certificate proves $\lvert m\rvert>\lvert E\rvert$ for all $n\ge10$.
+4. This gives $n-1$ sign changes. Parity gives the last real zero, and positive coefficients make every zero negative.
+5. Rows $n\le91$ are checked independently by exact Sturm sequences.
 
-Two details need special care:
-- The root collision at $x^\ast=-3-2\sqrt2$, which is handled through the regularised formula for $\Psi_N$.
-- The exact identity $G_n(-1)=0$ for $n\equiv2\pmod 4$, which breaks the naive sign alternation.
+Two points need special care:
+- The root collision at $x^\ast=-3-2\sqrt2$, handled by a regularised formula $\Psi_N$.
+- The exact identity $G_n(-1)=0$ for $n\equiv2\pmod 4$, which breaks naive sign alternation.
 
-**Side facts that appear only in this work** (as far as we know): $G_n(-1)=0$ exactly when $n\equiv2\pmod4$; and the collision angle satisfies $\theta_\ast/\pi\notin\mathbb Q$, so no sample point ever lands on $x^\ast$.
+**Side facts not found elsewhere** (to our knowledge):
+- $G_n(-1)=0$ exactly when $n\equiv2\pmod4$.
+- The collision angle satisfies $\theta_\ast/\pi\notin\mathbb Q$, so no sample point lands on $x^\ast$.
 
 **Verification.**
-- The certificate passed on Colab on 27 Nov 2026 with python-flint 0.9.0 ([`stageC/CERT_OUTPUT_2026-11-27.txt`](stageC/CERT_OUTPUT_2026-11-27.txt)).
-- Four AI referees reviewed it: two Claude sessions, ChatGPT and Gemini. Round 2 verdicts were "accept" and "minor revision". One real defect (the C6 threshold) was found and fixed. See [`EXTERNAL_AI_CHECKS.md`](EXTERNAL_AI_CHECKS.md).
-- **No human mathematician has reviewed it.**
+- The certificate passed on Google Colab with python-flint 0.9.0 on 27 Nov 2026 ([output](stageC/CERT_OUTPUT_2026-11-27.txt)).
+- Four AI referees reviewed it: two Claude sessions, ChatGPT and Gemini. Their final verdicts were "accept" and "minor revision". One genuine defect, the C6 threshold, was found and fixed ([`EXTERNAL_AI_CHECKS.md`](EXTERNAL_AI_CHECKS.md)).
+- **No human mathematician has reviewed this work.**
 
-**How this was made.** The work was done by a gap-year student using free or consumer AI tools (Claude, ChatGPT, Gemini) and Google Colab. Every step is logged below.
+**How it was made.** One person, using consumer AI tools (Claude, ChatGPT, Gemini) and free Google Colab. The full process is logged below.
+
+## Where to start
+
+| If you want… | Read |
+|---|---|
+| The proof | [`STAGE_C_FINAL.md`](STAGE_C_FINAL.md) |
+| To rerun the certificate | `pip install python-flint`, then `python stageC/stageC_cert_rigorous.py 12 0.05` and `python stageC/stageC_exact.py` |
+| How it compares with Davis's proof | [`LITERATURE_CHECK.md`](LITERATURE_CHECK.md) |
+| The review history | [`REFEREE_1.md`](REFEREE_1.md), [`REFEREE_2.md`](REFEREE_2.md), [`EXTERNAL_AI_CHECKS.md`](EXTERNAL_AI_CHECKS.md) |
 
 ---
 
 ## Research log
 
-> **Status:** a computer-assisted proof of the $D^2$ half is complete (see [`STAGE_C_FINAL.md`](STAGE_C_FINAL.md)). It has been checked by two Claude referees, ChatGPT and Gemini ([`EXTERNAL_AI_CHECKS.md`](EXTERNAL_AI_CHECKS.md)), and no error has been found. **No human expert has reviewed it yet**, so it is not a confirmed result. The $A^2$ half is still open.
-> **Priority:** Cinna Davis's pipeline reported an internally reviewed $D^2$ argument on 21 Nov 2026, four days before this work began. That argument is unpublished, and its method is unknown. This proof was found independently. See [`LITERATURE_CHECK.md`](LITERATURE_CHECK.md).
-> Started 25 Nov 2026. Last updated 27 Nov 2026.
+### Setup
 
-## Target
+Mao–Wang Conjecture 4.1 states that the row generating functions of $A^2$ (the Eulerian triangle squared) and $D^2$ (the Delannoy triangle squared) have only real, nonpositive zeros. [SymCat](https://www.symmetricfunctions.com/realRootedOpenProblems.htm) lists it as open (checked 26 Nov 2026). This repository concerns the $D^2$ half only. **The $A^2$ half remains open.**
 
-The source is Mao & Wang, *The Narayana transformation*, [arXiv:2607.01572](https://arxiv.org/abs/2607.01572) (2 Jul 2026).
+Write $G_n(x)$ for row $n$ of $D^2$. The paper gives
 
-**Conjecture 4.1:** the row generating functions of $A^2$ (the Eulerian triangle squared) and $D^2$ (the Delannoy triangle squared) have only real, nonpositive zeros.
+```math
+G_0=1,\quad G_1=x+2,\quad G_2=x^2+6x+5,\quad G_3=x^3+10x^2+25x+12,
+```
 
-[SymCat](https://www.symmetricfunctions.com/realRootedOpenProblems.htm) lists it as open (checked 25 Nov 2026).
+```math
+G_n=(x+3)G_{n-1}+(x-1)G_{n-2}+(x-1)G_{n-3}+x\,G_{n-4}\qquad(n\ge 4).
+```
 
-This log mainly concerns the $D^2$ part. Let $G_n(x)$ be row $n$ of $D^2$. The paper gives
+### Notation
 
-$$G_0=1,\quad G_1=x+2,\quad G_2=x^2+6x+5,\quad G_3=x^3+10x^2+25x+12,$$
+```math
+a=-4-3\sqrt2,\qquad b=-3+2\sqrt2,\qquad x^\ast=-3-2\sqrt2,
+```
 
-$$G_n=(x+3)G_{n-1}+(x-1)G_{n-2}+(x-1)G_{n-3}+x\,G_{n-4}\qquad(n\ge 4).$$
+```math
+q^\ast(t)=(1+\sqrt2)t^2+\sqrt2\,t+1,\qquad q_b(t)=(1-\sqrt2)t^2-\sqrt2\,t+1.
+```
 
-## Notation
-
-$$a=-4-3\sqrt2,\qquad b=-3+2\sqrt2,\qquad x^\ast=-3-2\sqrt2,$$
-
-$$q^\ast(t)=(1+\sqrt2)t^2+\sqrt2\,t+1,\qquad q_b(t)=(1-\sqrt2)t^2-\sqrt2\,t+1.$$
-
-## Results so far
+### Results along the way
 
 | # | Statement | Status | Evidence |
 |---|-----------|--------|----------|
@@ -65,50 +76,54 @@ $$q^\ast(t)=(1+\sqrt2)t^2+\sqrt2\,t+1,\qquad q_b(t)=(1-\sqrt2)t^2-\sqrt2\,t+1.$$
 | 2 | $D^2$ rows $1$–$91$: all zeros real and $\le 0$ | **Exact** (Sturm count, integer arithmetic) | [`shots/07_rows91.png`](shots/07_rows91.png) |
 | 3 | $A^2$ rows $1$–$30$ real-rooted | Exact (Mao–Wang, in the paper) | paper |
 | 4 | $A^2$ and $D^2$, rows $\le 38$: consecutive rows interlace | Numerical only | [`shots/01_interlace.png`](shots/01_interlace.png) |
-| 5 | No recurrence for $A^2$ of the form $\sum_{i\le 4}(a_i+b_ix+c_in+d_inx)P_{n-i}$ | Checked (the same search rediscovers the $D^2$ recurrence) | [`shots/01_interlace.png`](shots/01_interlace.png) |
-| 6 | $\sum_n G_n t^n = \dfrac{1-t}{\mathrm{Den}}$, where $\mathrm{Den}=(1-t)(1-2t-t^2)-x\,t(1+t)(1+t^2)$ | **Proved** (Riordan array), with exact check | [`scripts/verify_lemma.py`](scripts/verify_lemma.py) |
+| 5 | No recurrence for $A^2$ of the form $\sum_{i\le 4}(a_i+b_ix+c_in+d_inx)P_{n-i}$ | Checked (the same search recovers the $D^2$ recurrence) | [`shots/01_interlace.png`](shots/01_interlace.png) |
+| 6 | $\sum_n G_n t^n = (1-t)/\mathrm{Den}$, where $\mathrm{Den}=(1-t)(1-2t-t^2)-x t(1+t)(1+t^2)$ | **Proved** (Riordan arrays), with exact check | [`scripts/verify_lemma.py`](scripts/verify_lemma.py) |
 | 7 | $\operatorname{disc}_t(\mathrm{Den})=-16(x^2+6x+1)^2(x^2+8x-2)$ | **Proved**, with exact check | [`shots/03_disc.png`](shots/03_disc.png) |
 | 8 | The zeros accumulate on $[a,b]$; row 38 has its zeros in $(-8.218,-0.178)$ | Interval exact; accumulation numerical (Beraha–Kahane–Weiss) | [`shots/02_limit.png`](shots/02_limit.png) |
-| 9 | **Two-squares identity:** $(b-x^\ast)\,\mathrm{Den}=(b-x)\,q^\ast(t)^2+(x-x^\ast)\,q_b(t)^2$ | **Proved**, with exact check | [`PROOF_angle_lemma.md`](PROOF_angle_lemma.md) |
-| 10 | **Angle lemma:** for $x\in(a,b)$ the smallest-modulus roots form a unique conjugate pair $\tau e^{\pm i\theta}$ (the two pairs coincide only at $x^\ast$). $\theta$ is continuous and strictly decreasing from $\pi$ to $0$. | **Proved** by Opus 5.5. Algebra verified independently. Logic refereed (no fatal gaps; 3 fixable points). | [`PROOF_angle_lemma.md`](PROOF_angle_lemma.md), [`REFEREE_1.md`](REFEREE_1.md), [`shots/09_passed.png`](shots/09_passed.png) |
-| 11 | For $n\le 60$, after mapping zeros to $\theta$, each slice of width $\pi/(n+2)$ holds at most one zero | Numerical | Colab output (not saved) |
-| 12 | Forgács–Tran ([1606.07125](https://arxiv.org/abs/1606.07125), [1601.02582](https://arxiv.org/abs/1601.02582)) do not apply directly, for three reasons. (a) The numerator is $1-t$. (b) The $x$-part has several terms. (c) $P$ has the negative zero $-1-\sqrt2$, and their result only covers large $n$. | Checked | — |
+| 9 | **Two-squares identity:** $(b-x^\ast)\mathrm{Den}=(b-x)q^\ast(t)^2+(x-x^\ast)q_b(t)^2$ | **Proved**, with exact check | [`PROOF_angle_lemma.md`](PROOF_angle_lemma.md) |
+| 10 | **Angle lemma:** for $x\in(a,b)$ the smallest-modulus roots form a conjugate pair $\tau e^{\pm i\theta}$, unique except at $x^\ast$. $\theta$ is continuous and strictly decreasing from $\pi$ to $0$. | **Proved.** Algebra verified independently; logic refereed. | [`STAGE_C_FINAL.md`](STAGE_C_FINAL.md) (Lemma A), [`REFEREE_1.md`](REFEREE_1.md) |
+| 11 | Forgács–Tran ([1606.07125](https://arxiv.org/abs/1606.07125), [1601.02582](https://arxiv.org/abs/1601.02582)) do not apply directly: the numerator is $1-t$, the $x$-dependence has several terms, and their result covers only large $n$ | Checked | — |
+| 12 | $G_n(-1)=0$ for every $n\equiv2\pmod4$ | **Proved** (exact identity) | [`STAGE_C_FINAL.md`](STAGE_C_FINAL.md) |
+| 13 | **The theorem**, for all $n$ | **Proved** (computer-assisted) | [`STAGE_C_FINAL.md`](STAGE_C_FINAL.md) |
 
-## Stage C: claimed proof for all $n$ (26 Nov 2026)
+### Timeline
 
-**Claim.** Every $G_n$ is real-rooted with negative zeros. This would settle the $D^2$ half of Conjecture 4.1. See [`STAGE_C.md`](STAGE_C.md).
+1. **25 Nov:** numerical exploration. Exact checks of rows to 91. Generating function, discriminant and two-squares identity.
+2. **26 Nov:**
+   - The angle lemma is proved, and referee report 1 is written.
+   - Stage C partial-fraction argument.
+   - A float interval certificate passes on Node/V8 and on Python/Colab.
+   - Referee report 2 finds the reasoning correct.
+3. **27 Nov:**
+   - A rigorous Arb certificate removes the floating-point assumption.
+   - ChatGPT and Gemini review the work (two rounds), and the C6 threshold is fixed.
+   - The certificate is rerun and passes.
+   - A literature check finds Davis's earlier proof.
 
-- **$n\ge10$:** covered by an interval-arithmetic certificate. It **passed on two independent platforms** (Node/V8 locally, Python/glibc on Colab) with identical output.
-- **$n\le91$:** exact Sturm count.
-- **Exact identities:** all pass in sympy.
-- **New exact fact:** $G_n(-1)=0$ for every $n\equiv2\pmod4$. Because of this, the original "alternation" goal fails at $x=-1$, and the statement was corrected to account for it.
-- **Referee report 2:** the reasoning is **correct**. Nothing is fatal; there are two gaps in the write-up to fix. See [`REFEREE_2.md`](REFEREE_2.md).
-- **Rigorous certificate (python-flint / Arb balls, every operation certified):** **PASSED** for all $N\ge12$ on Colab (27 Nov 2026), so the libm assumption is gone. The script is `stageC/stageC_cert_rigorous.py`.
-- **Final write-up:** [`STAGE_C_FINAL.md`](STAGE_C_FINAL.md), with the referee's fixes folded in.
-- **Lean:** see the feasibility note, [`LEAN_FEASIBILITY.md`](LEAN_FEASIBILITY.md).
-- **Outside AI checks (27 Nov 2026):** ChatGPT and Gemini independently verified the identities, the $G_n(-1)$ fact and the counting. Neither found an error. See [`EXTERNAL_AI_CHECKS.md`](EXTERNAL_AI_CHECKS.md).
-- **Still pending:** an external review by a human expert. Every checker so far is an AI.
-
-## Side target: SymCat #19 (skew Schur Ehrhart $h^\ast$-polynomials)
-
-We tested 3,220 new cases ($|\lambda|\le 9$, $k\le 5$), all outside SymCat's checked range of $|\lambda|\le 8$, $k\le 4$. There were **0 failures**.
-
-Our definition still needs checking against SymCat's exact wording. See [`shots/06_sym19.png`](shots/06_sym19.png).
+[`STAGE_C.md`](STAGE_C.md) is the original working draft of Stage C, kept for the record. It is superseded by [`STAGE_C_FINAL.md`](STAGE_C_FINAL.md).
 
 ## Files
 
 | Path | Contents |
 |------|----------|
-| [`PROOF_angle_lemma.md`](PROOF_angle_lemma.md) | Proof of items 6, 7, 9 and 10 |
-| [`REFEREE_1.md`](REFEREE_1.md) | Referee report on that proof |
-| [`STAGE_C.md`](STAGE_C.md) | Stage C: claimed proof for all $n$, with the verification log |
-| [`stageC/`](stageC/) | Stage C certificate (Node and Python) and the exact sympy checks |
-| [`scripts/`](scripts/) | Exact checks: rows to 91, and verification of the lemma's algebra |
-| [`opus/`](opus/) | Opus's original verification scripts |
-| [`shots/`](shots/) | Screenshots of each computation |
+| [`STAGE_C_FINAL.md`](STAGE_C_FINAL.md) | **The complete proof**, including Lemma A (the angle lemma) |
+| [`stageC/stageC_cert_rigorous.py`](stageC/stageC_cert_rigorous.py) | Rigorous Arb certificate for $n\ge10$ |
+| [`stageC/stageC_exact.py`](stageC/stageC_exact.py), [`stageC/stageC_n45_exact.py`](stageC/stageC_n45_exact.py) | Exact sympy checks of the identities and small cases |
+| [`stageC/CERT_OUTPUT_2026-11-27.txt`](stageC/CERT_OUTPUT_2026-11-27.txt) | Output of the final certificate run |
+| `stageC/cert.mjs`, `run_cert.mjs`, `stageC_cert.py` | Earlier float-interval versions of the certificate (superseded) |
+| `stageC/explore*.mjs`, `smalln.mjs`, `exact_n45.mjs` | Exploration scripts used during development |
+| [`LITERATURE_CHECK.md`](LITERATURE_CHECK.md) | Priority search and comparison with Davis's proof |
+| [`EXTERNAL_AI_CHECKS.md`](EXTERNAL_AI_CHECKS.md) | ChatGPT and Gemini review rounds |
+| [`REFEREE_1.md`](REFEREE_1.md), [`REFEREE_2.md`](REFEREE_2.md) | Claude referee reports |
+| [`PROOF_angle_lemma.md`](PROOF_angle_lemma.md), [`STAGE_C.md`](STAGE_C.md) | Original drafts, superseded by `STAGE_C_FINAL.md` |
+| [`LEAN_FEASIBILITY.md`](LEAN_FEASIBILITY.md) | Notes on formalising parts of the proof in Lean |
+| [`scripts/`](scripts/) | Exact checks: rows to 91, and the algebra in the lemmas |
+| [`opus/`](opus/) | The prover's original verification scripts |
+| [`shots/`](shots/) | Screenshots of key computations |
 
 ## Credits
 
-- Computations: Python/sympy in Google Colab.
-- Proofs of items 6, 7, 9 and 10: Claude Opus 5.5, checked independently.
-- Research direction and verification: Sukhraj Sachdeva, with Claude.
+- Mathematics and code: Claude Opus 5.5 (prover and referee sessions), directed and checked by Sukhraj Sachdeva.
+- External review: ChatGPT and Gemini.
+- Computation: Google Colab.
+- Thanks to Jianxi Mao and Lijie Wang for the conjecture, and to Per Alexandersson's SymCat for cataloguing it.
