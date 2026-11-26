@@ -190,13 +190,13 @@ The enclosures for $c=\cos\theta$ on a $\tau$-box use the monotonicity of $c_\pm
 
 ### C6. The $-1$ window (PROVED (CA))
 
-On $W_1$, on the $+$ branch, forward-mode automatic differentiation over intervals gives:
-- $m'(\tau)\le-0.829$, so $m$ is strictly monotone and has a single sign change at $\tau_w$, i.e. at $\theta=\pi/4$;
+On $W_1$, on the $+$ branch, forward-mode automatic differentiation over Arb balls gives (rounded in the safe direction):
+- $m'(\tau)\le-0.828$, so $m$ is strictly monotone and has a single sign change at $\tau_w$, i.e. at $\theta=\pi/4$;
 - $\lvert d\theta/d\tau\rvert\le7.42$;
-- $e\le0.838$;
+- $e\le0.829$;
 - $q\ge3.652$.
 
-So the failure set $\lbrace \theta:\lvert m\rvert\le e\ q^{-N}\rbrace$ is an interval around $\pi/4$ of length at most $2\cdot0.838\cdot7.42/0.829\cdot3.652^{-N}\le15.1\cdot3.652^{-N}$. For $N\ge12$ this is less than $\pi/(2N)$, because $N\ 3.652^{-N}$ is decreasing once $N\ge1/\ln3.652$, and at $N=12$ we have $N\cdot15.1\cdot3.652^{-N}\approx3.2\times10^{-5}<\pi/2$. The failure set is centred at $\pi/4$, so it lies within $\pi/(4N)$ of $\pi/4$. If $4\nmid N$, every sample point satisfies $\lvert k\pi/N-\pi/4\rvert\ge\pi/(4N)$, so none lies in the failure set. If $4\mid N$, the only sample point within $\pi/N$ of $\pi/4$ is $\pi/4$ itself. This proves the exceptional clause of Proposition C. (A round-2 external referee pointed out that the length bound $<\pi/N$ alone gives only "at most one sample point". The threshold is now $\pi/(2N)$, both here and in the code.)
+So the failure set $\lbrace \theta:\lvert m\rvert\le e\ q^{-N}\rbrace$ is an interval around $\pi/4$ of length at most $2\cdot0.829\cdot7.42/0.828\cdot3.652^{-N}\le15.1\cdot3.652^{-N}$. For $N\ge12$ this is less than $\pi/(2N)$, because $N\ 3.652^{-N}$ is decreasing once $N\ge1/\ln3.652$, and at $N=12$ we have $N\cdot15.1\cdot3.652^{-N}\approx3.2\times10^{-5}<\pi/2$. The failure set is centred at $\pi/4$, so it lies within $\pi/(4N)$ of $\pi/4$. If $4\nmid N$, every sample point satisfies $\lvert k\pi/N-\pi/4\rvert\ge\pi/(4N)$, so none lies in the failure set. If $4\mid N$, the only sample point within $\pi/N$ of $\pi/4$ is $\pi/4$ itself. This proves the exceptional clause of Proposition C. (A round-2 external referee pointed out that the length bound $<\pi/N$ alone gives only "at most one sample point". The threshold is now $\pi/(2N)$, both here and in the code.)
 
 ### C7. The $x^\ast$ window (PROVED (CA))
 
@@ -226,11 +226,11 @@ where $A=U(-\lambda)\ \ell(\lambda)/\lambda$, $W=N\ell(\lambda)$ and $E_2(z)=(1-
 - **Case $\lvert W\rvert\le2$.** $\Psi_N\ge N\beta-D_2$. Here $E_2$ is enclosed by its Taylor polynomial $1-W/2+W^2/6$ plus a remainder of at most $\lvert W\rvert^3e^{\lvert W\rvert}/24$ when $\lvert W\rvert\le\tfrac14$, and directly otherwise.
 - **Case $\lvert W\rvert\ge2$.** $\Psi_N\ge\frac{\lvert U(-\lambda)\rvert}{\lvert\lambda\rvert}\big(\cos\chi-e^{-2\cos\varphi}\big)-D_2>0$, where $\chi=\arg(U(-\lambda)/\lambda)$ (named $\chi$ to avoid a clash with $\psi=q_\ast/q_b$).
 
-Certified constants at $\lambda_0=0.05$:
-- left ray: $D_2=0.370$, $\beta\ge0.124$, case-2 slack $\ge1.87$;
-- right ray: $D_2=0.328$, $\beta\ge0.0497$, case-2 slack $\ge0.456$.
+Certified constants at $\lambda_0=0.05$ (from the rigorous Arb run, rounded in the safe direction):
+- left ray: $D_2\le0.367$, $\beta\ge0.080$, case-2 slack $\ge1.89$;
+- right ray: $D_2\le0.327$, $\beta\ge0.053$, case-2 slack $\ge0.46$.
 
-So $\Psi_N>0$ for all $N>6.60$. That is the sign $(-1)^{k+1}$, consistent with $m>0$ on $(a,-1)$.
+So $\Psi_N>0$ for all $N>6.2$ (the run prints $N>6.13$). That is the sign $(-1)^{k+1}$, consistent with $m>0$ on $(a,-1)$.
 
 *(Explanatory, NUMERICAL.)* The limiting model is $\mathrm{Re}[A_0E_2(z)]$ with $A_0=(1-\zeta)/(2\alpha^2(\mathrm{Im}\zeta)^2)\approx0.3377-0.1497i$. It is positive along both rays.
 
@@ -249,7 +249,7 @@ For $1\le n\le11$, $G_n$ has $n$ real zeros: `sympy` `count_roots` (exact Sturm)
 | `stageC_exact.py` | sympy: the factorisation; $\partial_t\mathrm{Den}$ at the roots; $\theta(-1)=\pi/4$ and $m(-1)=0$; $G_n(-1)=0$ for $n\equiv2\pmod4$; $x=-2-\sqrt5$ at $\theta=\pi/2$; $n\le11$. | Exact. |
 | `stageC_n45_exact.py` (`exact_n45.mjs`) | The C2 repeats for $n=4,5$. | Exact rational intervals. |
 
-Expected summary (Node run, $N_0=12$, $\lambda_0=0.05$): both boundary checks `true`; the four regions `fails=0` with signs $[1],[1],[1],[-1]$; the $-1$ window `N*len(N0)=3.2e-5 < pi/2`; the $\lambda$-window needs $N>6.60$; `CERTIFICATE PASSED for all N >= 12 (n >= 10)`. The float port reproduced this on Colab with identical box counts. The ball version prints the same lines; its box counts may differ slightly, but the verdict must not.
+Expected summary of the rigorous run ([`CERT_OUTPUT_2026-11-27.txt`](stageC/CERT_OUTPUT_2026-11-27.txt), $N_0=12$, $\lambda_0=0.05$): both boundary checks `true`; the four regions `fails=0` with signs $[1],[1],[1],[-1]$; the $-1$ window `N*len(N0)=3.2e-5 < pi/2`; the $\lambda$-window needs $N>6.13$; `CERTIFICATE PASSED for all N >= 12 (n >= 10)`. The earlier float versions (Node and Python) print the same verdict, with slightly different constants.
 
 ---
 
