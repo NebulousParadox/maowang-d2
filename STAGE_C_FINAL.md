@@ -169,7 +169,7 @@ On $W_1$, on the $+$ branch, forward-mode automatic differentiation over interva
 - $e\le0.838$;
 - $q\ge3.652$.
 
-So the failure set $\{\theta:\lvert m\rvert\le e\,q^{-N}\}$ is an interval around $\pi/4$ of length at most $2\cdot0.838\cdot7.42/0.829\cdot3.652^{-N}\le15.1\cdot3.652^{-N}$. That is less than $\pi/N$ for $N\ge12$, because $N\,3.652^{-N}$ is decreasing once $N\ge1/\ln3.652$. Hence the failure set contains at most one sample point. Since $\lvert k\pi/N-\pi/4\rvert\ge\pi/(4N)$ unless $4\mid N$, this proves the exceptional clause of Proposition C.
+So the failure set $\{\theta:\lvert m\rvert\le e\,q^{-N}\}$ is an interval around $\pi/4$ of length at most $2\cdot0.838\cdot7.42/0.829\cdot3.652^{-N}\le15.1\cdot3.652^{-N}$. For $N\ge12$ this is less than $\pi/(2N)$, because $N\,3.652^{-N}$ is decreasing once $N\ge1/\ln3.652$, and at $N=12$ we have $N\cdot15.1\cdot3.652^{-N}\approx3.2\times10^{-5}<\pi/2$. The failure set is centred at $\pi/4$, so it lies within $\pi/(4N)$ of $\pi/4$. If $4\nmid N$, every sample point satisfies $\lvert k\pi/N-\pi/4\rvert\ge\pi/(4N)$, so none lies in the failure set. If $4\mid N$, the only sample point within $\pi/N$ of $\pi/4$ is $\pi/4$ itself. This proves the exceptional clause of Proposition C. (A round-2 external referee pointed out that the length bound $<\pi/N$ alone gives only "at most one sample point". The threshold is now $\pi/(2N)$, both here and in the code.)
 
 ### C7. The $x^*$ window (PROVED (CA))
 
@@ -210,7 +210,7 @@ For $1\le n\le11$, $G_n$ has $n$ real zeros: `sympy` `count_roots` (exact Sturm)
 | `stageC_exact.py` | sympy: the factorisation; $\partial_t\mathrm{Den}$ at the roots; $\theta(-1)=\pi/4$ and $m(-1)=0$; $G_n(-1)=0$ for $n\equiv2\pmod4$; $x=-2-\sqrt5$ at $\theta=\pi/2$; $n\le11$. | Exact. |
 | `stageC_n45_exact.py` (`exact_n45.mjs`) | The C2 repeats for $n=4,5$. | Exact rational intervals. |
 
-Expected summary (Node run, $N_0=12$, $\lambda_0=0.05$): both boundary checks `true`; the four regions `fails=0` with signs $[1],[1],[1],[-1]$; the $-1$ window `N*len(N0)=3.2e-5 < pi`; the $\lambda$-window needs $N>6.60$; `CERTIFICATE PASSED for all N >= 12 (n >= 10)`. The float port reproduced this on Colab with identical box counts. The ball version prints the same lines; its box counts may differ slightly, but the verdict must not.
+Expected summary (Node run, $N_0=12$, $\lambda_0=0.05$): both boundary checks `true`; the four regions `fails=0` with signs $[1],[1],[1],[-1]$; the $-1$ window `N*len(N0)=3.2e-5 < pi/2`; the $\lambda$-window needs $N>6.60$; `CERTIFICATE PASSED for all N >= 12 (n >= 10)`. The float port reproduced this on Colab with identical box counts. The ball version prints the same lines; its box counts may differ slightly, but the verdict must not.
 
 ---
 
@@ -222,7 +222,7 @@ Expected summary (Node run, $N_0=12$, $\lambda_0=0.05$): both boundary checks `t
 4. C4: the segment mean-value form of $m$, so that the boxes reach $\theta=0$ and $\theta=\pi$; the arc bound, including path independence and $(\pi-\theta_2)/\sin\theta_2\le\pi/2$.
 5. C5: the coverage chain $\Gamma^+\cup W_1\cup\Gamma^-\cup(\lambda\text{-window})\cup\text{circle}=(0,\pi)$, using the boundary certificates at $\theta_S$ and $\tau_E$ with (M1) and (M2).
 6. C5/C7: the $\lambda$ labelling via $\cos\varphi>0$ (so $\operatorname{Re}\ell>0$) and $\operatorname{Im}t(\pm\lambda)>0$.
-7. C6: that $m$ is monotone on $W_1$, and that a set shorter than $\pi/N$ contains at most one grid point.
+7. C6: that $m$ is monotone on $W_1$, and that a set centred at $\pi/4$ and shorter than $\pi/(2N)$ contains no grid point unless $4\mid N$, and then only $\pi/4$.
 8. C7: the derivation of $\Psi_N$, the removable singularity at $x^*$, and both cases $\lvert W\rvert\lessgtr2$.
 9. C2: the exact $n=4,5$ repeats, and the identity for $G_n(-1)$.
 10. §4: that `stageC_cert_rigorous.py` passes, so the libm assumption (including `pow`) of the float versions is no longer needed.

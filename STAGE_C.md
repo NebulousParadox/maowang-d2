@@ -1,7 +1,7 @@
 # Stage C: real-rootedness of every $G_n$
 
 - **Author:** Claude Opus 5.5, 26 Nov 2026.
-- **Status:** computer-assisted. Certified independently on two platforms. **Reasoning not yet refereed.** No novelty claimed.
+- **Status:** this is the original working document, kept for the record. **The current version is [`STAGE_C_FINAL.md`](STAGE_C_FINAL.md).** Since this was written, the reasoning has been refereed ([`REFEREE_2.md`](REFEREE_2.md)), the libm assumption has been removed by a rigorous Arb certificate, and ChatGPT and Gemini have cross-checked it ([`EXTERNAL_AI_CHECKS.md`](EXTERNAL_AI_CHECKS.md)).
 - **Scripts:** [`stageC/`](stageC/)
 
 ## Verification log (26 Nov 2026)
@@ -86,10 +86,11 @@ For $n=1,\dots,11$, exact sign changes show that $G_n$ has $n$ real zeros. Rows 
 
 ## Conclusion
 
-Assuming libm is accurate to within 4 ulp, every $G_n$ is real-rooted with negative zeros. **This settles the $D^2$ half of Mao–Wang Conjecture 4.1, pending referee review.**
+Every $G_n$ is real-rooted with negative zeros. (This originally assumed libm accuracy to within 4 ulp. That assumption was removed when the Arb certificate passed on 27 Nov 2026.) **This settles the $D^2$ half of Mao–Wang Conjecture 4.1, pending review by a human expert.**
 
 ## Open items
 
-1. **Referee the reasoning.** Report 2 has been requested. The focus is the counting at $x=-1$ and the $\Psi_N$ derivation.
-2. **Remove the libm assumption.** Rerun the certificate with rigorous interval arithmetic (mpmath `iv` or Arb).
-3. A gap that the conjecture does not need: we have not shown that the $n$-th zero lies in $(a,b)$.
+1. ~~Referee the reasoning.~~ **Done.** Report 2 found the reasoning correct.
+2. ~~Remove the libm assumption.~~ **Done.** `stageC_cert_rigorous.py` (python-flint/Arb) passed for all $N\ge12$.
+3. Review by a human expert. **Pending.**
+4. A gap that the conjecture does not need: we have not shown that the $n$-th zero lies in $(a,b)$.

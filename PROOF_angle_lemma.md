@@ -2,7 +2,7 @@
 
 - **Produced by:** Claude Opus 5.5, 26 Nov 2026.
 - **Algebra:** checked independently with [`scripts/verify_lemma.py`](scripts/verify_lemma.py). All checks pass.
-- **Logic:** refereed in [`REFEREE_1.md`](REFEREE_1.md). No fatal gaps were found. The fixes F1–F3 are not yet folded into the text below.
+- **Logic:** refereed in [`REFEREE_1.md`](REFEREE_1.md). No fatal gaps were found. **This is the original draft, kept for the record.** The fixes F1–F3 are folded into Lemma A in [`STAGE_C_FINAL.md`](STAGE_C_FINAL.md), which is the version to cite.
 - **Novelty:** none claimed.
 
 ## Notation
@@ -93,7 +93,7 @@ $$\cos^2\theta_1=\frac{(1+v)^2}{2(1-v)(\alpha+\beta v)},$$
 
 - The roots $c$ and $\bar c$ are double roots.
 - All four roots have modulus $(\sqrt2-1)^{1/2}$, so the modulus ratio is exactly $1$ here.
-- The slope of $\theta$ is infinite at $x^\ast$. This is proved from the left; from the right it is only numerical (see referee point F2).
+- ~~The slope of $\theta$ is infinite at $x^\ast$.~~ **Withdrawn.** This was proved only from the left, and the main proof does not need it. The $x^\ast$ neighbourhood is handled by the $\lambda$-window (C7).
 
 **Step 4 (proved).** On $(x^\ast,b)$, put $w=\sqrt{-\kappa}$.
 

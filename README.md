@@ -1,7 +1,41 @@
-# Mao–Wang Conjecture 4.1 (the $D^2$ part): research log
+# An independent computer-assisted proof of the $D^2$ case of Mao–Wang Conjecture 4.1
 
-> **Status:** work in progress. No resolution is claimed, and nothing here has been refereed externally.
-> Started 25 Nov 2026. Last updated 26 Nov 2026.
+## Summary
+
+**Theorem.** For every $n$, the row polynomial $G_n(x)$ of the squared Delannoy triangle $D^2$ has only real, negative zeros. This is the $D^2$ half of Conjecture 4.1 in Mao & Wang, [arXiv:2607.01572](https://arxiv.org/abs/2607.01572).
+
+**Priority.** This is **not the first proof.**
+- Cinna Davis's pipeline completed a short, fully analytic proof on 20 Nov 2026: [`research/mao-wang/delannoy-proof.md`](https://github.com/1337isnot1337/solved-conjectures/blob/research/research/mao-wang/delannoy-proof.md).
+- That proof completes a strategy that the omega-institute had already sketched publicly in October 2026.
+- **The proof here was found independently**, between 25 and 27 Nov 2026, with no knowledge of either, and **by a different method.** See [`LITERATURE_CHECK.md`](LITERATURE_CHECK.md) for the timeline and a side-by-side comparison.
+
+**Method in one paragraph.**
+1. $\sum_n G_nt^n=(1-t)/\mathrm{Den}(x,t)$, where $\mathrm{Den}$ is a quartic, and a two-squares identity controls its roots.
+2. An angle lemma shows that the dominant root's argument sweeps monotonically from $\pi$ to $0$ across $(a,b)$.
+3. Partial fractions give $G_n$ at $n+1$ sample points as $(\pm)\,[m+E]$. A rigorous Arb interval-arithmetic certificate shows $\lvert m\rvert>\lvert E\rvert$ for all $n\ge10$.
+4. This yields $n-1$ sign changes, a parity argument gives the last real zero, and positive coefficients make all zeros negative.
+5. Rows $n\le91$ are checked by exact Sturm sequences.
+
+Two details need special care:
+- The root collision at $x^\ast=-3-2\sqrt2$, which is handled through the regularised formula for $\Psi_N$.
+- The exact identity $G_n(-1)=0$ for $n\equiv2\pmod 4$, which breaks the naive sign alternation.
+
+**Side facts that appear only in this work** (as far as we know): $G_n(-1)=0$ exactly when $n\equiv2\pmod4$; and the collision angle satisfies $\theta_\ast/\pi\notin\mathbb Q$, so no sample point ever lands on $x^\ast$.
+
+**Verification.**
+- The certificate passed on Colab on 27 Nov 2026 with python-flint 0.9.0 ([`stageC/CERT_OUTPUT_2026-11-27.txt`](stageC/CERT_OUTPUT_2026-11-27.txt)).
+- Four AI referees reviewed it: two Claude sessions, ChatGPT and Gemini. Round 2 verdicts were "accept" and "minor revision". One real defect (the C6 threshold) was found and fixed. See [`EXTERNAL_AI_CHECKS.md`](EXTERNAL_AI_CHECKS.md).
+- **No human mathematician has reviewed it.**
+
+**How this was made.** The work was done by a gap-year student using free or consumer AI tools (Claude, ChatGPT, Gemini) and Google Colab. Every step is logged below.
+
+---
+
+## Research log
+
+> **Status:** a computer-assisted proof of the $D^2$ half is complete (see [`STAGE_C_FINAL.md`](STAGE_C_FINAL.md)). It has been checked by two Claude referees, ChatGPT and Gemini ([`EXTERNAL_AI_CHECKS.md`](EXTERNAL_AI_CHECKS.md)), and no error has been found. **No human expert has reviewed it yet**, so it is not a confirmed result. The $A^2$ half is still open.
+> **Priority:** Cinna Davis's pipeline reported an internally reviewed $D^2$ argument on 21 Nov 2026, four days before this work began. That argument is unpublished, and its method is unknown. This proof was found independently. See [`LITERATURE_CHECK.md`](LITERATURE_CHECK.md).
+> Started 25 Nov 2026. Last updated 27 Nov 2026.
 
 ## Target
 
@@ -52,7 +86,8 @@ $$q^\ast(t)=(1+\sqrt2)t^2+\sqrt2\,t+1,\qquad q_b(t)=(1-\sqrt2)t^2-\sqrt2\,t+1.$$
 - **Rigorous certificate (python-flint / Arb balls, every operation certified):** **PASSED** for all $N\ge12$ on Colab (27 Nov 2026), so the libm assumption is gone. The script is `stageC/stageC_cert_rigorous.py`.
 - **Final write-up:** [`STAGE_C_FINAL.md`](STAGE_C_FINAL.md), with the referee's fixes folded in.
 - **Lean:** see the feasibility note, [`LEAN_FEASIBILITY.md`](LEAN_FEASIBILITY.md).
-- **Still pending:** an external review by a human expert. The prover and both referees are AI.
+- **Outside AI checks (27 Nov 2026):** ChatGPT and Gemini independently verified the identities, the $G_n(-1)$ fact and the counting. Neither found an error. See [`EXTERNAL_AI_CHECKS.md`](EXTERNAL_AI_CHECKS.md).
+- **Still pending:** an external review by a human expert. Every checker so far is an AI.
 
 ## Side target: SymCat #19 (skew Schur Ehrhart $h^\ast$-polynomials)
 
