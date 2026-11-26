@@ -1,4 +1,6 @@
-# An independent computer-assisted proof of the $D^2$ case of Mao–Wang Conjecture 4.1
+# A second, independent proof of the $D^2$ case of Mao–Wang Conjecture 4.1, by a different method
+
+> **In one line:** the first proof (Davis, 20 Nov 2026) works with the *ordinary* Delannoy rows and is fully analytic. This one works directly with the generating function of the *squared* rows. It follows the dominant root of a quartic, and it closes the argument with a rigorous interval-arithmetic certificate. The two routes share almost nothing beyond the final root count.
 
 ## Summary
 
