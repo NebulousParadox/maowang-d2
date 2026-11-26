@@ -36,6 +36,12 @@ assert sp.N(rho2) > sp.N(rho)                                           # so t1 
 # S4. G_n(-1) = 0 for every n = 2 mod 4:  F(t)+F(-t)-F(it)-F(-it) = 0, F = (1-t)/Den(-1,t)
 F = lambda s: (1 - s)/Den.subs(x, -1).subs(t, s)
 assert sp.simplify(sp.together(F(t) + F(-t) - F(I*t) - F(-I*t))) == 0
+# S4'. elementary proof: g_n = G_n(-1) has characteristic polynomial chi(y) = y^4 - 2y^3 + 2y^2 + 2y + 1,
+# chi(y) chi(-y) = y^8 + 14 y^4 + 1, hence g_{n+8} = -14 g_{n+4} - g_n; with g_2 = g_6 = 0 all g_{4k+2} = 0.
+yv = sp.symbols('y')
+chi = yv**4 - 2*yv**3 + 2*yv**2 + 2*yv + 1
+assert sp.expand(chi*chi.subs(yv, -yv) - (yv**8 + 14*yv**4 + 1)) == 0
+# (g_2 = g_6 = 0 is asserted in S6 below, once G_0..G_11 are built)
 
 # S5. theta = pi/2 sample point is x = -2 - sqrt5 (Den(x, i rho) = 0 with rho^2 = (x+3)/(x-1))
 xv = -2 - sp.sqrt(5); rr = sp.sqrt((xv+3)/(xv-1))
@@ -45,6 +51,8 @@ assert sp.simplify(sp.expand(Den.subs({x: xv, t: I*rr}))) == 0
 G = [sp.Integer(1), x+2, x**2+6*x+5, x**3+10*x**2+25*x+12]
 for n in range(4, 12):
     G.append(sp.expand((x+3)*G[n-1] + (x-1)*G[n-2] + (x-1)*G[n-3] + x*G[n-4]))
+assert G[2].subs(x, -1) == 0 and G[6].subs(x, -1) == 0          # base cases for S4'
+assert all(sp.expand(G[n+8] + 14*G[n+4] + G[n]).subs(x, -1) == 0 for n in range(0, 4))  # step-4 recurrence spot check
 for n in range(1, 12):
     P = sp.Poly(G[n], x)
     assert P.count_roots() == n                       # n real roots (exact, with multiplicity)
