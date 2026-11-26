@@ -32,7 +32,6 @@
   - Her issue calls it "uncounted", because the joint conjecture also needs $A^2$.
 - **Our proof was found independently**, without knowledge of hers, and by a different method (compared below). That has some value as independent confirmation. It is not a priority claim.
 
-
 ## Method comparison (Davis's `research/mao-wang/delannoy-proof.md`, dated 20 Nov 2026)
 
 | | Davis | Ours |
@@ -47,6 +46,6 @@ Notes:
 - **Checked:** her $g_n$ equals our $G_n$ for $n<16$, and her identity (9) holds numerically.
 - **Earlier still:** her file credits a public omega-institute note (last changed 11 Oct 2026) that already described the divided-difference and circle strategy. Her new step is the amplitude inequality.
 - **Verdict:** the methods are genuinely different, and hers is cleaner and shorter. Ours is an independent, computer-assisted confirmation.
-- **Not in her proof:** the facts $G_n(-1)=0$ for $n\equiv2\pmod4$ and $\theta_\ast/\pi\notin\mathbb Q$ appear only in our work. They are minor side results.
+- **Not in her proof:** the facts $G_n(-1)=0$ for $n\equiv2\pmod4$ and $\theta_\ast/\pi\notin\mathbb{Q}$ appear only in our work. They are minor side results.
 
 - **The $A^2$ half is still open everywhere.** Davis confirms it. The best known result is an exact check of row 31 (omega-institute).

@@ -33,7 +33,7 @@ Steps 1, 2, 4b, 4c, 4d and 5 hold as written.
 5. In 4c, state that $\theta\mapsto T(\theta)e^{i\theta}$ is a bijection onto $\Gamma$, and that $\theta_c$ is never a solution.
 6. In 4b, $h'$ is infinite at $\tau_0$. State that $c_-$ is continuous there.
 7. Keep the label "cross-check" on Step 6.
-8. Remove the leftover references to "$R=P/B$" and "your values".
+8. Remove the leftover references to $R=P/B$ and "your values".
 9. Replace the phrase "grid effect" with the $\sqrt\delta$ scaling. Here $\delta = |x - x^\ast|$:
    - at $\delta=10^{-2}$, ratio $-1\approx 0.05$
    - at $\delta=10^{-4}$, ratio $-1\approx 0.005$

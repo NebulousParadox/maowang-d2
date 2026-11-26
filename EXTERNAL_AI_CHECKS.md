@@ -44,7 +44,7 @@ The proof does not need this, because the $\lambda$-window covers points arbitra
 
 | Question | ChatGPT | Gemini |
 |---|---|---|
-| The $x^\ast$ collision ($\lambda$-window, $\Psi_N$, $\lambda=0$) | **Resolved.** It rechecked the residue signs. It confirmed that the code's intervals contain $\lambda=0$ and that it never divides by $\lambda$. | **Completely sound.** The removable singularity is handled correctly, and the ray labelling via $\operatorname{Re}\ell>0$ is correct. |
+| The $x^\ast$ collision ($\lambda$-window, $\Psi_N$, $\lambda=0$) | **Resolved.** It rechecked the residue signs. It confirmed that the code's intervals contain $\lambda=0$ and that it never divides by $\lambda$. | **Completely sound.** The removable singularity is handled correctly, and the ray labelling via $\mathrm{Re}\ell>0$ is correct. |
 | Uniformity in $N$ (passing at $N_0$ ⇒ passing for all $N\ge N_0$) | **Valid.** The increment argument works. | **Airtight.** |
 | Coverage of $(0,\pi)$ | No gaps found. | No gaps. It checked every boundary overlap. |
 | Angle lemma | Sound in the final version (Part 1). The old draft (Part 2) has an unsupported slope claim. | Sound, with minor points of exposition. |

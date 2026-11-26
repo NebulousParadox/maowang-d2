@@ -22,7 +22,7 @@ Two points need special care:
 
 **Side facts not found elsewhere** (to our knowledge):
 - $G_n(-1)=0$ exactly when $n\equiv2\pmod4$.
-- The collision angle satisfies $\theta_\ast/\pi\notin\mathbb Q$, so no sample point lands on $x^\ast$.
+- The collision angle satisfies $\theta_\ast/\pi\notin\mathbb{Q}$, so no sample point lands on $x^\ast$.
 
 **Verification.**
 - The certificate passed on Google Colab with python-flint 0.9.0 on 27 Nov 2026 ([output](stageC/CERT_OUTPUT_2026-11-27.txt)).
@@ -78,7 +78,7 @@ q^\ast(t)=(1+\sqrt2)t^2+\sqrt2\,t+1,\qquad q_b(t)=(1-\sqrt2)t^2-\sqrt2\,t+1.
 | 4 | $A^2$ and $D^2$, rows $\le 38$: consecutive rows interlace | Numerical only | [`shots/01_interlace.png`](shots/01_interlace.png) |
 | 5 | No recurrence for $A^2$ of the form $\sum_{i\le 4}(a_i+b_ix+c_in+d_inx)P_{n-i}$ | Checked (the same search recovers the $D^2$ recurrence) | [`shots/01_interlace.png`](shots/01_interlace.png) |
 | 6 | $\sum_n G_n t^n = (1-t)/\mathrm{Den}$, where $\mathrm{Den}=(1-t)(1-2t-t^2)-x t(1+t)(1+t^2)$ | **Proved** (Riordan arrays), with exact check | [`scripts/verify_lemma.py`](scripts/verify_lemma.py) |
-| 7 | $\operatorname{disc}_t(\mathrm{Den})=-16(x^2+6x+1)^2(x^2+8x-2)$ | **Proved**, with exact check | [`shots/03_disc.png`](shots/03_disc.png) |
+| 7 | $\mathrm{disc}_t(\mathrm{Den})=-16(x^2+6x+1)^2(x^2+8x-2)$ | **Proved**, with exact check | [`shots/03_disc.png`](shots/03_disc.png) |
 | 8 | The zeros accumulate on $[a,b]$; row 38 has its zeros in $(-8.218,-0.178)$ | Interval exact; accumulation numerical (Beraha–Kahane–Weiss) | [`shots/02_limit.png`](shots/02_limit.png) |
 | 9 | **Two-squares identity:** $(b-x^\ast)\mathrm{Den}=(b-x)q^\ast(t)^2+(x-x^\ast)q_b(t)^2$ | **Proved**, with exact check | [`PROOF_angle_lemma.md`](PROOF_angle_lemma.md) |
 | 10 | **Angle lemma:** for $x\in(a,b)$ the smallest-modulus roots form a conjugate pair $\tau e^{\pm i\theta}$, unique except at $x^\ast$. $\theta$ is continuous and strictly decreasing from $\pi$ to $0$. | **Proved.** Algebra verified independently; logic refereed. | [`STAGE_C_FINAL.md`](STAGE_C_FINAL.md) (Lemma A), [`REFEREE_1.md`](REFEREE_1.md) |

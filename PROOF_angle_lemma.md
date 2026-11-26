@@ -15,11 +15,15 @@
   - These satisfy $x^\ast b=1$.
 - The quadratics:
 
-$$q^\ast(t)=(1+\sqrt2)t^2+\sqrt2\ t+1,\qquad q_b(t)=(1-\sqrt2)t^2-\sqrt2\ t+1.$$
+```math
+q^\ast(t)=(1+\sqrt2)t^2+\sqrt2\ t+1,\qquad q_b(t)=(1-\sqrt2)t^2-\sqrt2\ t+1.
+```
 
 - The maps:
 
-$$\kappa(x)=\frac{x-x^\ast}{x-b},\qquad \psi(t)=\frac{q^\ast(t)}{q_b(t)}.$$
+```math
+\kappa(x)=\frac{x-x^\ast}{x-b},\qquad \psi(t)=\frac{q^\ast(t)}{q_b(t)}.
+```
 
 - $c=\dfrac{-\sqrt2+i\sqrt{2+4\sqrt2}}{2+2\sqrt2}$ is the root of $q^\ast$ in the upper half-plane. It satisfies $|c|^2=\sqrt2-1$, and $\theta_c=\arg c\approx 2.043269$.
 - $r_1\approx 0.6012$ and $r_2\approx-4.0155$ are the roots of $q_b$. They satisfy $r_1+r_2=-(2+\sqrt2)$.
@@ -30,37 +34,49 @@ $$\kappa(x)=\frac{x-x^\ast}{x-b},\qquad \psi(t)=\frac{q^\ast(t)}{q_b(t)}.$$
 
 Put $C_k=t^k(1+t)^k/(1-t)^{k+1}$. Then $(1-t)C_k=t(1+t)C_{k-1}$. This gives the recurrence
 
-$$d(n,k)=d(n-1,k)+d(n-1,k-1)+d(n-2,k-1),$$
+```math
+d(n,k)=d(n-1,k)+d(n-1,k-1)+d(n-2,k-1),
+```
 
 with the same boundary values as $D$.
 
 **A2 (proved).** The Riordan product rule gives $D^2=\big(g\cdot g(f),\ f\circ f\big)$, where
 
-$$g\cdot g(f)=\frac{1}{1-2t-t^2},\qquad f\circ f=\frac{t(1+t)(1+t^2)}{(1-t)(1-2t-t^2)}.$$
+```math
+g\cdot g(f)=\frac{1}{1-2t-t^2},\qquad f\circ f=\frac{t(1+t)(1+t^2)}{(1-t)(1-2t-t^2)}.
+```
 
 So
 
-$$\sum_n G_nt^n=\frac{1-t}{\mathrm{Den}},\qquad \mathrm{Den}=1-(x+3)t-(x-1)t^2-(x-1)t^3-xt^4.$$
+```math
+\sum_n G_nt^n=\frac{1-t}{\mathrm{Den}},\qquad \mathrm{Den}=1-(x+3)t-(x-1)t^2-(x-1)t^3-xt^4.
+```
 
 **A3 (proved by computer algebra).**
 
-$$\operatorname{disc}_t(\mathrm{Den})=-16(x^2+6x+1)^2(x^2+8x-2).$$
+```math
+\mathrm{disc}_t(\mathrm{Den})=-16(x^2+6x+1)^2(x^2+8x-2).
+```
 
 ## Key structure
 
 **S1.** At the two special values of $x$, $\mathrm{Den}$ is a perfect square:
 
-$$\mathrm{Den}(x^\ast,t)=q^\ast(t)^2,\qquad \mathrm{Den}(b,t)=q_b(t)^2.$$
+```math
+\mathrm{Den}(x^\ast,t)=q^\ast(t)^2,\qquad \mathrm{Den}(b,t)=q_b(t)^2.
+```
 
 **S2 (two-squares identity).** In general, $\mathrm{Den}$ is a blend of these two squares:
 
-$$(b-x^\ast)\ \mathrm{Den}(x,t)=(b-x)\ q^\ast(t)^2+(x-x^\ast)\ q_b(t)^2.$$
+```math
+(b-x^\ast)\ \mathrm{Den}(x,t)=(b-x)\ q^\ast(t)^2+(x-x^\ast)\ q_b(t)^2.
+```
 
 So for $x\ne b$, $\mathrm{Den}=0\iff\psi(t)^2=\kappa(x)$.
 
 **S3.** Facts about the quadratics and about $\kappa$:
-- $\operatorname{disc}q^\ast<0$, so $q^\ast>0$ on $\mathbb R$.
-- $\operatorname{disc}q_b>0$.
+- $\mathrm{disc}q^\ast<0$, so $q^\ast>0$ on $\mathbb{R}$.
+- $\mathrm{disc}q_b>0$.
 - $q^\ast q_b=-(t^4+4t^3-1)$.
 - $\kappa$ is a decreasing bijection $(-\infty,b)\to(-\infty,1)$. It maps $(a,x^\ast)$ onto $(0,\kappa(a))$, and $[x^\ast,b)$ onto $(-\infty,0]$.
 - $\kappa(a)=v_a^2$, where $v_a=(1+2\sqrt2)/7$.
@@ -69,19 +85,25 @@ So for $x\ne b$, $\mathrm{Den}=0\iff\psi(t)^2=\kappa(x)$.
 
 **Step 1 (proved).** For $x\in(a,b)$ there are no real roots. For $x\ne x^\ast$, the four roots are distinct.
 
-- On $(x^\ast,b)$: $\mathrm{Den}>0$ on $\mathbb R$, by S2.
+- On $(x^\ast,b)$: $\mathrm{Den}>0$ on $\mathbb{R}$, by S2.
 - On $(a,x^\ast]$: put $v=\sqrt{\kappa}$. Then $\mathrm{Den}\propto(q^\ast-vq_b)(q^\ast+vq_b)$, and on $[0,v_a)$ both discriminants are negative:
 
-$$\operatorname{disc}(q^\ast\mp vq_b)=(4\sqrt2-2)v^2\pm 12v-(2+4\sqrt2)<0.$$
+```math
+\mathrm{disc}(q^\ast\mp vq_b)=(4\sqrt2-2)v^2\pm 12v-(2+4\sqrt2)<0.
+```
 
 **Step 2 (proved).** On $(a,x^\ast)$, pair 1 is the pair of roots of $q^\ast-vq_b$, which has coefficients
 
-$$A_1=\alpha+\beta v,\qquad B_1=\sqrt2(1+v),\qquad C_1=1-v.$$
+```math
+A_1=\alpha+\beta v,\qquad B_1=\sqrt2(1+v),\qquad C_1=1-v.
+```
 
 - The moduli are strictly ordered: $\tau_1<\tau_2$.
 - The angle satisfies
 
-$$\cos^2\theta_1=\frac{(1+v)^2}{2(1-v)(\alpha+\beta v)},$$
+```math
+\cos^2\theta_1=\frac{(1+v)^2}{2(1-v)(\alpha+\beta v)},
+```
 
   and the log-derivative of the right-hand side is positive.
 - So $\theta_1$ is strictly decreasing in $x$.
@@ -99,11 +121,15 @@ $$\cos^2\theta_1=\frac{(1+v)^2}{2(1-v)(\alpha+\beta v)},$$
 
 - **4a.** The upper roots lie on
 
-$$\Gamma=\lbrace \operatorname{Re}(q^\ast(t)\overline{q_b(t)})=0,\ \operatorname{Im}t>0\rbrace .$$
+```math
+\Gamma=\lbrace \mathrm{Re}(q^\ast(t)\overline{q_b(t)})=0,\ \mathrm{Im}t>0\rbrace .
+```
 
 - **4b.** In polar form $t=\tau e^{i\theta}$, writing $\gamma=\cos\theta$, the curve $\Gamma$ becomes
 
-$$\tau^4+4\gamma\tau^3+4(1-\gamma^2)\tau^2-1=0.$$
+```math
+\tau^4+4\gamma\tau^3+4(1-\gamma^2)\tau^2-1=0.
+```
 
   - Each branch $\gamma_\pm$ is monotone, because $h'>1$ (by AM–GM).
   - So $\Gamma$ is a single arc $\tau=T(\theta)$ for $\theta\in(0,\pi)$, with $T(0^+)=r_1$ and $T(\pi^-)=|r_2|$.

@@ -29,11 +29,15 @@
 
 Partial fractions give
 
-$$G_n=-2\operatorname{Re}\left[u_1t_1^{-N}+u_2t_2^{-N}\right].$$
+```math
+G_n=-2\mathrm{Re}\left[u_1t_1^{-N}+u_2t_2^{-N}\right].
+```
 
 At $\theta_1=k\pi/N$ we have $t_1^{-N}=(-1)^k\rho_1^{-N}$. So
 
-$$G_n(x_k)=(-1)^{k+1}\rho_1^{-N}\ [\ m+E\ ],\qquad m=2\operatorname{Re}u_1,\quad |E|\le 2|u_2|\ (\rho_1/\rho_2)^N.$$
+```math
+G_n(x_k)=(-1)^{k+1}\rho_1^{-N}\ [\ m+E\ ],\qquad m=2\mathrm{Re}u_1,\quad |E|\le 2|u_2|\ (\rho_1/\rho_2)^N.
+```
 
 ## C2. The original goal is false
 
@@ -46,13 +50,15 @@ These repeated signs are certified:
 
 **Exact fact.** $G_n(-1)=0$ whenever $n\equiv 2\pmod 4$. This follows from the identity
 
-$$F(t)+F(-t)-F(it)-F(-it)=0,\qquad F=\frac{1-t}{\mathrm{Den}(-1,t)}.$$
+```math
+F(t)+F(-t)-F(it)-F(-it)=0,\qquad F=\frac{1-t}{\mathrm{Den}(-1,t)}.
+```
 
 ## C3. Corrected theorem, for $N\ge12$ (proved, computer-assisted)
 
 **Sign pattern.**
-- If $\theta_k>\pi/4$, then $\operatorname{sign}G_n(x_k)=(-1)^{k+1}$.
-- If $\theta_k<\pi/4$, then $\operatorname{sign}G_n(x_k)=(-1)^k$.
+- If $\theta_k>\pi/4$, then $\mathrm{sign}G_n(x_k)=(-1)^{k+1}$.
+- If $\theta_k<\pi/4$, then $\mathrm{sign}G_n(x_k)=(-1)^k$.
 
 The only possible exception is a $k$ with $|\theta_k-\pi/4|\le 15.1\cdot3.652^{-N}$. That happens only when $4\mid N$, at $x_k=-1$.
 
@@ -67,18 +73,22 @@ The certificate uses outward rounding. `exp`, `cos` and `sin` are widened by 4 u
 
 | Region | Method | Constants |
 |---|---|---|
-| Far region (circle side, $\Gamma_\pm$ branches) | Adaptive boxes that check the C1 condition at $N_0$ | 0 failures. $\operatorname{sign} m=+$ for $\theta>\pi/4$ and $-$ for $\theta<\pi/4$ |
+| Far region (circle side, $\Gamma_\pm$ branches) | Adaptive boxes that check the C1 condition at $N_0$ | 0 failures. $\mathrm{sign} m=+$ for $\theta>\pi/4$ and $-$ for $\theta<\pi/4$ |
 | $b$ end | Arc bound for pair 2: $\rho_2^{-N}(\pi/2)(S_1+NS_0/\rho_2)$ | Passes, together with an increment check |
 | $-1$ window, $\tau\in[0.51364,0.52164]$ | Forward-mode automatic differentiation over intervals | $m'\le-0.829$, $\lvert d\theta/d\tau\rvert\le7.42$, $e\le0.838$, $\rho_2/\rho_1\ge3.652$ |
 | $x^\ast$ window, $\lvert\kappa\rvert\le\lambda_0^2=0.0025$ | Exact formula for $\Psi_N$ (below), with two cases | Left: $D_2=0.370$, $\beta\ge0.124$. Right: $D_2=0.328$, $\beta\ge0.050$. So $\Psi_N>0$ for all $N>6.6$ |
 
 The exact formula used in the $x^\ast$ window:
 
-$$G_n(x_k)=(-1)^{k+1}\frac{\rho_1^{-N}}{K}\ \Psi_N,\qquad \Psi_N=\operatorname{Re}\frac{U(\lambda)-U(-\lambda)e^{-N\ell(\lambda)}}{\lambda},$$
+```math
+G_n(x_k)=(-1)^{k+1}\frac{\rho_1^{-N}}{K}\ \Psi_N,\qquad \Psi_N=\mathrm{Re}\frac{U(\lambda)-U(-\lambda)e^{-N\ell(\lambda)}}{\lambda},
+```
 
 where
 
-$$K=\frac{b-x}{4\sqrt2},\qquad U(\lambda)=\frac{(1-t)\ t}{q_b(t)\ \big(q^{\ast\prime}(t)-\lambda q_b'(t)\big)},\qquad \ell(\lambda)=\log\frac{t(-\lambda)}{t(\lambda)}.$$
+```math
+K=\frac{b-x}{4\sqrt2},\qquad U(\lambda)=\frac{(1-t)\ t}{q_b(t)\ \big(q^{\ast\prime}(t)-\lambda q_b'(t)\big)},\qquad \ell(\lambda)=\log\frac{t(-\lambda)}{t(\lambda)}.
+```
 
 ## C8. Small $n$ (exact)
 
