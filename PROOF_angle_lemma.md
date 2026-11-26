@@ -122,7 +122,7 @@ A_1=\alpha+\beta v,\qquad B_1=\sqrt2(1+v),\qquad C_1=1-v.
 - **4a.** The upper roots lie on
 
 ```math
-\Gamma=\lbrace \mathrm{Re}(q^\ast(t)\overline{q_b(t)})=0,\ \mathrm{Im}t>0\rbrace .
+\Gamma=\lbrace \mathrm{Re}(q^\ast(t)\overline{q_b(t)})=0,\ \mathrm{Im}t>0\rbrace.
 ```
 
 - **4b.** In polar form $t=\tau e^{i\theta}$, writing $\gamma=\cos\theta$, the curve $\Gamma$ becomes

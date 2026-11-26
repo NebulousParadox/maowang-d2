@@ -33,7 +33,7 @@ In particular $\mathrm{Den}(x^\ast,\cdot)=q_\ast^2$ and $\mathrm{Den}(b,\cdot)=q
 **(b) PROVED.** For $x\in(a,b)$, $\mathrm{Den}(x,\cdot)$ has no real zeros.
 - If $x\ne x^\ast$, the zeros are four distinct numbers $t_1,\bar t_1,t_2,\bar t_2$ with $\mathrm{Im}t_j>0$ and $\lvert t_1\rvert<\lvert t_2\rvert$ strictly.
 - At $x=x^\ast$ the zeros are $\zeta,\bar\zeta$, each a double zero, all of modulus $(\sqrt2-1)^{1/2}$.
-- **Convention (F3).** On $(a,b)\setminus\lbrace x^\ast\rbrace $ there is a strict modulus gap. At $x^\ast$, counted without multiplicity, $\lbrace \zeta,\bar\zeta\rbrace $ is the unique smallest pair, and we put $t_1=t_2=\zeta$ there. Every later step allows this double root.
+- **Convention (F3).** On $(a,b)\setminus\lbrace x^\ast\rbrace$ there is a strict modulus gap. At $x^\ast$, counted without multiplicity, $\lbrace \zeta,\bar\zeta\rbrace$ is the unique smallest pair, and we put $t_1=t_2=\zeta$ there. Every later step allows this double root.
 
 **(c) PROVED.** $\theta(x):=\arg t_1\in(0,\pi)$ is continuous and strictly decreasing on $(a,b)$, with $\theta\to\pi$ as $x\to a^+$, $\theta\to0$ as $x\to b^-$, and $\theta(x^\ast)=\theta_\zeta$.
 
@@ -166,11 +166,11 @@ The right-hand side stays finite as $\mathrm{Im}t_1\to0$. At $\theta=0$, $t_1=r_
 2\mathrm{Re}(u_2t_2^{-N})=\frac{H(t_2)-H(\bar t_2)}{t_2-\bar t_2},
 ```
 
-and $\lvert E\rvert\le q^{-N}\min\lbrace e,\ \tfrac\pi2(S_1+NS_0/\rho_2)\rbrace $, where $q=\rho_2/\rho_1$ and:
+and $\lvert E\rvert\le q^{-N}\min\lbrace e,\ \tfrac\pi2(S_1+NS_0/\rho_2)\rbrace$, where $q=\rho_2/\rho_1$ and:
 - (i) $e=2\lvert u_2\rvert=\lvert h_2(t_2)\rvert/\mathrm{Im}t_2$;
 - (ii) the arc bound. $H$ is single-valued, so $\int H'$ is path-independent. Take the path along $\lvert z\rvert=\rho_2$ from $\bar t_2$ to $t_2$ through $-\rho_2$. Then $\lvert\cdot\rvert\le\frac{\pi-\theta_2}{\sin\theta_2}\max\lvert H'\rvert$, and $\frac{\pi-\theta_2}{\sin\theta_2}\le\frac\pi2$ for $\theta_2\ge\pi/2$. Here $S_0=\max_{\rm arc}\lvert h_2\rvert$ and $S_1=\max_{\rm arc}\lvert h_2'\rvert$. This bound needs no $1/\mathrm{Im}t_2$, so it works at $\theta=0$, where pair 2 is the double root $r_2$.
 
-**Sufficient condition at a point.** $\lvert m\rvert\ q^N>\min\lbrace e,\ \tfrac\pi2(S_1+NS_0/\rho_2)\rbrace $.
+**Sufficient condition at a point.** $\lvert m\rvert\ q^N>\min\lbrace e,\ \tfrac\pi2(S_1+NS_0/\rho_2)\rbrace$.
 - With $e$, the left side increases in $N$ while the right side is fixed, so the inequality at $N_0$ implies it for all $N\ge N_0$.
 - With the arc bound, it also suffices that $\lvert m\rvert q^{N_0}(q-1)\ge\frac\pi2S_0/\rho_2$, which is checked.
 
@@ -196,7 +196,7 @@ On $W_1$, on the $+$ branch, forward-mode automatic differentiation over interva
 - $e\le0.838$;
 - $q\ge3.652$.
 
-So the failure set $\lbrace \theta:\lvert m\rvert\le e\ q^{-N}\rbrace $ is an interval around $\pi/4$ of length at most $2\cdot0.838\cdot7.42/0.829\cdot3.652^{-N}\le15.1\cdot3.652^{-N}$. For $N\ge12$ this is less than $\pi/(2N)$, because $N\ 3.652^{-N}$ is decreasing once $N\ge1/\ln3.652$, and at $N=12$ we have $N\cdot15.1\cdot3.652^{-N}\approx3.2\times10^{-5}<\pi/2$. The failure set is centred at $\pi/4$, so it lies within $\pi/(4N)$ of $\pi/4$. If $4\nmid N$, every sample point satisfies $\lvert k\pi/N-\pi/4\rvert\ge\pi/(4N)$, so none lies in the failure set. If $4\mid N$, the only sample point within $\pi/N$ of $\pi/4$ is $\pi/4$ itself. This proves the exceptional clause of Proposition C. (A round-2 external referee pointed out that the length bound $<\pi/N$ alone gives only "at most one sample point". The threshold is now $\pi/(2N)$, both here and in the code.)
+So the failure set $\lbrace \theta:\lvert m\rvert\le e\ q^{-N}\rbrace$ is an interval around $\pi/4$ of length at most $2\cdot0.838\cdot7.42/0.829\cdot3.652^{-N}\le15.1\cdot3.652^{-N}$. For $N\ge12$ this is less than $\pi/(2N)$, because $N\ 3.652^{-N}$ is decreasing once $N\ge1/\ln3.652$, and at $N=12$ we have $N\cdot15.1\cdot3.652^{-N}\approx3.2\times10^{-5}<\pi/2$. The failure set is centred at $\pi/4$, so it lies within $\pi/(4N)$ of $\pi/4$. If $4\nmid N$, every sample point satisfies $\lvert k\pi/N-\pi/4\rvert\ge\pi/(4N)$, so none lies in the failure set. If $4\mid N$, the only sample point within $\pi/N$ of $\pi/4$ is $\pi/4$ itself. This proves the exceptional clause of Proposition C. (A round-2 external referee pointed out that the length bound $<\pi/N$ alone gives only "at most one sample point". The threshold is now $\pi/(2N)$, both here and in the code.)
 
 ### C7. The $x^\ast$ window (PROVED (CA))
 
