@@ -1,71 +1,134 @@
-# Angle lemma for the D² generating function
+# Angle lemma for the $D^2$ generating function
 
-Produced by Claude Opus 5.5 on 26 Nov 2026 from our brief. Algebra independently verified
-(scripts/verify_lemma.py, all checks passed). Logic NOT yet refereed. No novelty claimed.
+- **Produced by:** Claude Opus 5.5, 26 Nov 2026.
+- **Algebra:** checked independently with [`scripts/verify_lemma.py`](scripts/verify_lemma.py). All checks pass.
+- **Logic:** refereed in [`REFEREE_1.md`](REFEREE_1.md). No fatal gaps were found. The fixes F1–F3 are not yet folded into the text below.
+- **Novelty:** none claimed.
 
 ## Notation
-- α = 1+√2, β = √2−1 (αβ = 1).
-- a = −4−3√2 (root of x²+8x−2), b = −3+2√2 (root of x²+6x+1), x* = −3−2√2; x*·b = 1.
-- q*(t) = (1+√2)t² + √2 t + 1, q_b(t) = (1−√2)t² − √2 t + 1.
-- κ(x) = (x−x*)/(x−b), ψ(t) = q*(t)/q_b(t).
-- c = (−√2 + i√(2+4√2))/(2+2√2), the upper root of q*; |c|² = √2−1; θ_c = arg c ≈ 2.043269.
-- r1 ≈ 0.6012 > 0 > r2 ≈ −4.0155 the roots of q_b; r1 + r2 = −(2+√2).
 
-## (a) Claims 1 and 2
-**A1 (PROVED).** D is the Riordan array (1/(1−t), t(1+t)/(1−t)). With C_k = t^k(1+t)^k/(1−t)^{k+1},
-(1−t)C_k = t(1+t)C_{k−1}, giving d(n,k) = d(n−1,k) + d(n−1,k−1) + d(n−2,k−1), with the same boundary values.
+- $\alpha=1+\sqrt2$ and $\beta=\sqrt2-1$, so $\alpha\beta=1$.
+- The constants:
+  - $a=-4-3\sqrt2$ is a root of $x^2+8x-2$.
+  - $b=-3+2\sqrt2$ is a root of $x^2+6x+1$.
+  - $x^\ast=-3-2\sqrt2$.
+  - These satisfy $x^\ast b=1$.
+- The quadratics:
 
-**A2 (PROVED).** (g,f)(h,l) = (g·h(f), l(f)) gives D² = (g·g(f), f∘f), where g·g(f) = 1/(1−2t−t²) and
-f∘f = t(1+t)(1+t²)/((1−t)(1−2t−t²)). So Σ G_n tⁿ = (1−t)/Den. Series check matches D² rows for n < 14.
+$$q^\ast(t)=(1+\sqrt2)t^2+\sqrt2\,t+1,\qquad q_b(t)=(1-\sqrt2)t^2-\sqrt2\,t+1.$$
 
-**A3 (PROVED, computer algebra).** disc_t(Den) = −16(x²+6x+1)²(x²+8x−2).
+- The maps:
+
+$$\kappa(x)=\frac{x-x^\ast}{x-b},\qquad \psi(t)=\frac{q^\ast(t)}{q_b(t)}.$$
+
+- $c=\dfrac{-\sqrt2+i\sqrt{2+4\sqrt2}}{2+2\sqrt2}$ is the root of $q^\ast$ in the upper half-plane. It satisfies $|c|^2=\sqrt2-1$, and $\theta_c=\arg c\approx 2.043269$.
+- $r_1\approx 0.6012$ and $r_2\approx-4.0155$ are the roots of $q_b$. They satisfy $r_1+r_2=-(2+\sqrt2)$.
+
+## (a) The generating function and the discriminant
+
+**A1 (proved).** $D$ is the Riordan array $\left(\frac{1}{1-t},\ \frac{t(1+t)}{1-t}\right)$.
+
+Put $C_k=t^k(1+t)^k/(1-t)^{k+1}$. Then $(1-t)C_k=t(1+t)C_{k-1}$. This gives the recurrence
+
+$$d(n,k)=d(n-1,k)+d(n-1,k-1)+d(n-2,k-1),$$
+
+with the same boundary values as $D$.
+
+**A2 (proved).** The Riordan product rule gives $D^2=\big(g\cdot g(f),\ f\circ f\big)$, where
+
+$$g\cdot g(f)=\frac{1}{1-2t-t^2},\qquad f\circ f=\frac{t(1+t)(1+t^2)}{(1-t)(1-2t-t^2)}.$$
+
+So
+
+$$\sum_n G_nt^n=\frac{1-t}{\mathrm{Den}},\qquad \mathrm{Den}=1-(x+3)t-(x-1)t^2-(x-1)t^3-xt^4.$$
+
+**A3 (proved by computer algebra).**
+
+$$\operatorname{disc}_t(\mathrm{Den})=-16(x^2+6x+1)^2(x^2+8x-2).$$
 
 ## Key structure
-- **S1.** Den(x*,t) = q*(t)², Den(b,t) = q_b(t)².
-- **S2.** (b−x*)·Den(x,t) = (b−x)·q*(t)² + (x−x*)·q_b(t)². For x ≠ b: Den = 0 ⇔ ψ(t)² = κ(x).
-- **S3.** disc(q*) < 0, so q* > 0 on ℝ; disc(q_b) > 0; q*·q_b = −(t⁴+4t³−1).
-  κ is a decreasing bijection (−∞,b) → (−∞,1). It maps (a,x*) onto (0,κ(a)) and [x*,b) onto (−∞,0].
-  κ(a) = v_a², with v_a = (1+2√2)/7.
 
-## (b) Claim 3
-**Step 1 (PROVED).** No real roots for x in (a,b), and the roots are distinct for x ≠ x*.
-- On (x*,b), Den > 0 on ℝ by S2.
-- On (a,x*] put v = √κ. Then Den ∝ (q* − v q_b)(q* + v q_b), with
-  disc(q* − v q_b) = (4√2−2)v² + 12v − (2+4√2) < 0 and disc(q* + v q_b) = (4√2−2)v² − 12v − (2+4√2) < 0 on [0,v_a).
+**S1.** At the two special values of $x$, $\mathrm{Den}$ is a perfect square:
 
-**Step 2 (PROVED).** On (a,x*), pair 1 comes from q* − v q_b, with A1 = α+βv, B1 = √2(1+v), C1 = 1−v.
-- τ1 < τ2 strictly.
-- cos²θ1 = (1+v)²/(2(1−v)(α+βv)), and its log-derivative is positive.
-- So θ1 is strictly decreasing in x, with θ1 → π as x → a (a double root at t = 1−√2) and θ1 → θ_c as v → 0.
+$$\mathrm{Den}(x^\ast,t)=q^\ast(t)^2,\qquad \mathrm{Den}(b,t)=q_b(t)^2.$$
 
-**Step 3 (PROVED).** At x*, Den = q*², with double roots c and c̄ and all moduli equal to (√2−1)^{1/2}.
-The modulus ratio is exactly 1 there (the earlier "≈1.05" was grid resolution).
-Infinite slope of θ at x*: proved from the left, numerical from the right.
+**S2 (two-squares identity).** In general, $\mathrm{Den}$ is a blend of these two squares:
 
-**Step 4 (PROVED).** On (x*,b), with w = √(−κ):
-- **4a.** The upper roots lie on Γ = {Re(q*(t)·conj(q_b(t))) = 0, Im t > 0}.
-- **4b.** In polar form, Γ is τ⁴ + 4cτ³ + 4(1−c²)τ² − 1 = 0 with c = cos θ. The branches c± are monotone (h' > 1, via AM–GM).
-  Γ is a single arc τ = T(θ), θ ∈ (0,π), with T(0+) = r1 and T(π−) = |r2|.
-- **4c.** Intermediate value theorem plus exactly 2 upper-half-plane roots gives exactly one root on each side of θ_c.
-  Hence X(θ) is injective, θ_A(x) is strictly decreasing, and θ_A runs from θ_c down to 0.
-- **4d.** r1 < |c| reduces to 50 > 49, so τ_A < |c| < τ_B: the smallest pair is unique.
+$$(b-x^\ast)\,\mathrm{Den}(x,t)=(b-x)\,q^\ast(t)^2+(x-x^\ast)\,q_b(t)^2.$$
 
-**Step 5 (PROVED).** Gluing: θ is continuous and strictly decreasing on (a,b), from π to 0.
+So for $x\ne b$, $\mathrm{Den}=0\iff\psi(t)^2=\kappa(x)$.
 
-**Step 6 (PROVED, cross-check).** Equal moduli for two non-real pairs with x < 0 forces (x+1)(x²+6x+1) = 0,
-so only x = x* is possible.
+**S3.** Facts about the quadratics and about $\kappa$:
+- $\operatorname{disc}q^\ast<0$, so $q^\ast>0$ on $\mathbb R$.
+- $\operatorname{disc}q_b>0$.
+- $q^\ast q_b=-(t^4+4t^3-1)$.
+- $\kappa$ is a decreasing bijection $(-\infty,b)\to(-\infty,1)$. It maps $(a,x^\ast)$ onto $(0,\kappa(a))$, and $[x^\ast,b)$ onto $(-\infty,0]$.
+- $\kappa(a)=v_a^2$, where $v_a=(1+2\sqrt2)/7$.
 
-## Referee checklist (from Opus)
-1. Riordan identification and product rule (A1–A2).
-2. Discriminant (A3).
-3. Interpolation identity S2 ⇔ ψ² = κ.
-4. Discriminant signs of q* ∓ v q_b on [0,v_a), and v_a² = κ(a).
-5. Log-derivative inequality (Step 2).
-6. Polar reduction of Γ, the branches c±, and h' > 1 (4b).
-7. Endpoint equations c+ = 1 ⇔ τ = r1 (with τ ≤ 2), and c− = −1 ⇔ τ = |r2|.
-8. Intermediate value counting in 4c (uses exactly 2 upper-half-plane roots).
-9. r1 < |c| (50 > 49): the tightest step.
-10. Treatment of x* as the coincidence point.
+## (b) The angle lemma
 
-Opus's original scripts are in opus/ (verify.mjs was run by Opus; verify_sympy.py was rerun by us
-with a simplify fix as scripts/verify_lemma.py).
+**Step 1 (proved).** For $x\in(a,b)$ there are no real roots. For $x\ne x^\ast$, the four roots are distinct.
+
+- On $(x^\ast,b)$: $\mathrm{Den}>0$ on $\mathbb R$, by S2.
+- On $(a,x^\ast]$: put $v=\sqrt{\kappa}$. Then $\mathrm{Den}\propto(q^\ast-vq_b)(q^\ast+vq_b)$, and on $[0,v_a)$ both discriminants are negative:
+
+$$\operatorname{disc}(q^\ast\mp vq_b)=(4\sqrt2-2)v^2\pm 12v-(2+4\sqrt2)<0.$$
+
+**Step 2 (proved).** On $(a,x^\ast)$, pair 1 is the pair of roots of $q^\ast-vq_b$, which has coefficients
+
+$$A_1=\alpha+\beta v,\qquad B_1=\sqrt2(1+v),\qquad C_1=1-v.$$
+
+- The moduli are strictly ordered: $\tau_1<\tau_2$.
+- The angle satisfies
+
+$$\cos^2\theta_1=\frac{(1+v)^2}{2(1-v)(\alpha+\beta v)},$$
+
+  and the log-derivative of the right-hand side is positive.
+- So $\theta_1$ is strictly decreasing in $x$.
+- Limits:
+  - $\theta_1\to\pi$ as $x\to a$, where there is a double root at $t=1-\sqrt2$.
+  - $\theta_1\to\theta_c$ as $v\to0$.
+
+**Step 3 (proved).** At $x^\ast$ we have $\mathrm{Den}=q^{\ast2}$.
+
+- The roots $c$ and $\bar c$ are double roots.
+- All four roots have modulus $(\sqrt2-1)^{1/2}$, so the modulus ratio is exactly $1$ here.
+- The slope of $\theta$ is infinite at $x^\ast$. This is proved from the left; from the right it is only numerical (see referee point F2).
+
+**Step 4 (proved).** On $(x^\ast,b)$, put $w=\sqrt{-\kappa}$.
+
+- **4a.** The upper roots lie on
+
+$$\Gamma=\{\operatorname{Re}(q^\ast(t)\overline{q_b(t)})=0,\ \operatorname{Im}t>0\}.$$
+
+- **4b.** In polar form $t=\tau e^{i\theta}$, writing $\gamma=\cos\theta$, the curve $\Gamma$ becomes
+
+$$\tau^4+4\gamma\tau^3+4(1-\gamma^2)\tau^2-1=0.$$
+
+  - Each branch $\gamma_\pm$ is monotone, because $h'>1$ (by AM–GM).
+  - So $\Gamma$ is a single arc $\tau=T(\theta)$ for $\theta\in(0,\pi)$, with $T(0^+)=r_1$ and $T(\pi^-)=|r_2|$.
+- **4c.** On each side of $\theta_c$ there is exactly one root. This follows from the intermediate value theorem together with the fact that there are exactly 2 roots in the upper half-plane.
+  - So $X(\theta)$ is injective.
+  - Hence $\theta_A(x)$ is strictly decreasing from $\theta_c$ to $0$.
+- **4d.** $r_1<|c|$; this reduces to $50>49$.
+  - Hence $\tau_A<|c|<\tau_B$.
+  - So the smallest pair is unique.
+
+**Step 5 (proved).** Gluing the two sides together, $\theta$ is continuous and strictly decreasing on $(a,b)$, going from $\pi$ to $0$.
+
+**Step 6 (cross-check).** Suppose two non-real pairs have equal modulus and $x<0$. Then $(x+1)(x^2+6x+1)=0$, so in $(a,b)$ the only possibility is $x=x^\ast$.
+
+## Referee checklist (from the author)
+
+1. The Riordan identification and the product rule (A1–A2).
+2. The discriminant (A3).
+3. The identity S2, and its equivalence with $\psi^2=\kappa$.
+4. The discriminant signs of $q^\ast\mp vq_b$ on $[0,v_a)$, and $v_a^2=\kappa(a)$.
+5. The log-derivative inequality in Step 2.
+6. The polar reduction of $\Gamma$, the branches $\gamma_\pm$, and $h'>1$ (4b).
+7. The endpoints: $\gamma_+=1\iff\tau=r_1$ (using $\tau\le2$), and $\gamma_-=-1\iff\tau=|r_2|$.
+8. The intermediate value counting in 4c.
+9. $r_1<|c|$, i.e. $50>49$. This is the tightest step.
+10. The treatment of $x^\ast$ as the point where the two pairs coincide.
+
+*Notation change from the original: the referee asked us to rename $\cos\theta$, so it is $\gamma$ here (it was $c$).*

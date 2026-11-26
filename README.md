@@ -1,43 +1,69 @@
-# Mao–Wang Conjecture 4.1 (D² part): research log
+# Mao–Wang Conjecture 4.1 (the $D^2$ part): research log
 
-**Status: work in progress. No resolution claimed. Unrefereed.**
-Started 25 Nov 2026. This log dated 26 Nov 2026.
+> **Status:** work in progress. No resolution is claimed, and nothing here has been refereed externally.
+> Started 25 Nov 2026. Last updated 26 Nov 2026.
 
 ## Target
-Mao & Wang, *The Narayana transformation*, arXiv:2607.01572 (2 Jul 2026), Conjecture 4.1:
-the row generating functions of A² (Eulerian triangle squared) and D² (Delannoy triangle squared)
-have only real nonpositive zeros. Listed as open on SymCat
-(symmetricfunctions.com/realRootedOpenProblems.htm) as of 25 Nov 2026.
 
-This log concerns mainly the **D² part**. G_n(x) = row n of D².
-G_0=1, G_1=x+2, G_2=x²+6x+5, G_3=x³+10x²+25x+12,
-G_n = (x+3)G_{n-1} + (x-1)G_{n-2} + (x-1)G_{n-3} + x G_{n-4}  (from the paper).
+The source is Mao & Wang, *The Narayana transformation*, [arXiv:2607.01572](https://arxiv.org/abs/2607.01572) (2 Jul 2026).
+
+**Conjecture 4.1:** the row generating functions of $A^2$ (the Eulerian triangle squared) and $D^2$ (the Delannoy triangle squared) have only real, nonpositive zeros.
+
+[SymCat](https://www.symmetricfunctions.com/realRootedOpenProblems.htm) lists it as open (checked 25 Nov 2026).
+
+This log mainly concerns the $D^2$ part. Let $G_n(x)$ be row $n$ of $D^2$. The paper gives
+
+$$G_0=1,\quad G_1=x+2,\quad G_2=x^2+6x+5,\quad G_3=x^3+10x^2+25x+12,$$
+
+$$G_n=(x+3)G_{n-1}+(x-1)G_{n-2}+(x-1)G_{n-3}+x\,G_{n-4}\qquad(n\ge 4).$$
+
+## Notation
+
+$$a=-4-3\sqrt2,\qquad b=-3+2\sqrt2,\qquad x^\ast=-3-2\sqrt2,$$
+
+$$q^\ast(t)=(1+\sqrt2)t^2+\sqrt2\,t+1,\qquad q_b(t)=(1-\sqrt2)t^2-\sqrt2\,t+1.$$
 
 ## Results so far
 
 | # | Statement | Status | Evidence |
 |---|-----------|--------|----------|
-| 1 | Our definitions match the paper (A row 3 = [0,1,4,1], D row 3 = [1,5,5,1], D² rows 0–3 = G_0..G_3) | Verified | scripts/exact_rows.py asserts |
-| 2 | D² rows 1–91: all zeros real and ≤ 0 | **EXACT** (Sturm count, integer arithmetic) | shots/07_rows91.png, scripts/exact_rows.py |
-| 3 | A² rows 1–30 real-rooted | Exact, by Mao–Wang (paper) | paper |
-| 4 | A², D² rows ≤ 38: consecutive rows interlace | Numerical only (diagnostic) | shots/01_interlace.png |
-| 5 | Search for recurrence for A² of form sum (a_i + b_i x + c_i n + d_i n x) P_{n-i}, order ≤ 4 | None exists (method rediscovers the D² recurrence) | shots/01_interlace.png |
-| 6 | Σ G_n tⁿ = (1−t)/Den, Den = (1−t)(1−2t−t²) − x t(1+t)(1+t²) | PROVED (Riordan array), exact check | opus/, scripts/verify_lemma.py |
-| 7 | disc_t(Den) = −16(x²+6x+1)²(x²+8x−2) | PROVED, exact check | shots/03_disc.png |
-| 8 | Limit interval of zeros = [a,b] = [−4−3√2, −3+2√2]; row 38 zeros in (−8.218, −0.178) | Interval exact; accumulation numerical (Beraha–Kahane–Weiss) | shots/02_limit.png |
-| 9 | **Two-squares identity**: (b−x*)·Den = (b−x)·q*(t)² + (x−x*)·q_b(t)², x* = −3−2√2 | PROVED, exact check | PROOF_angle_lemma.md |
-| 10 | **Angle lemma**: for x in (a,b) the smallest-modulus t-roots are a unique conjugate pair τe^{±iθ} (pairs coincide only at x*), θ continuous, strictly decreasing from π to 0 | PROVED by Opus 5.5; all algebra independently verified (sympy, all checks passed); **logic refereed 26 Nov (second Opus chat, medium): no fatal gaps, 3 fixable (F1 endpoint limit of X, F2 Step 3 labelling, F3 statement at x*), 10 cosmetic** — see REFEREE_1.md | PROOF_angle_lemma.md, shots/09_passed.png |
-| 11 | For n ≤ 60, zeros mapped to θ lie one per slice of width π/(n+2) | Numerical | (Colab output, not screenshotted) |
-| 12 | Forgács–Tran (arXiv 1606.07125, 1601.02582) do not apply directly: numerator 1−t, multi-term x-part, P has negative zero −1−√2, and only "eventually" | Checked | — |
+| 1 | Our definitions match the paper: $A$ row 3 $=[0,1,4,1]$, $D$ row 3 $=[1,5,5,1]$, $D^2$ rows 0–3 $=G_0,\dots,G_3$ | Verified | [`scripts/exact_rows.py`](scripts/exact_rows.py) |
+| 2 | $D^2$ rows $1$–$91$: all zeros real and $\le 0$ | **Exact** (Sturm count, integer arithmetic) | [`shots/07_rows91.png`](shots/07_rows91.png) |
+| 3 | $A^2$ rows $1$–$30$ real-rooted | Exact (Mao–Wang, in the paper) | paper |
+| 4 | $A^2$ and $D^2$, rows $\le 38$: consecutive rows interlace | Numerical only | [`shots/01_interlace.png`](shots/01_interlace.png) |
+| 5 | No recurrence for $A^2$ of the form $\sum_{i\le 4}(a_i+b_ix+c_in+d_inx)P_{n-i}$ | Checked (the same search rediscovers the $D^2$ recurrence) | [`shots/01_interlace.png`](shots/01_interlace.png) |
+| 6 | $\sum_n G_n t^n = \dfrac{1-t}{\mathrm{Den}}$, where $\mathrm{Den}=(1-t)(1-2t-t^2)-x\,t(1+t)(1+t^2)$ | **Proved** (Riordan array), with exact check | [`scripts/verify_lemma.py`](scripts/verify_lemma.py) |
+| 7 | $\operatorname{disc}_t(\mathrm{Den})=-16(x^2+6x+1)^2(x^2+8x-2)$ | **Proved**, with exact check | [`shots/03_disc.png`](shots/03_disc.png) |
+| 8 | The zeros accumulate on $[a,b]$; row 38 has its zeros in $(-8.218,-0.178)$ | Interval exact; accumulation numerical (Beraha–Kahane–Weiss) | [`shots/02_limit.png`](shots/02_limit.png) |
+| 9 | **Two-squares identity:** $(b-x^\ast)\,\mathrm{Den}=(b-x)\,q^\ast(t)^2+(x-x^\ast)\,q_b(t)^2$ | **Proved**, with exact check | [`PROOF_angle_lemma.md`](PROOF_angle_lemma.md) |
+| 10 | **Angle lemma:** for $x\in(a,b)$ the smallest-modulus roots form a unique conjugate pair $\tau e^{\pm i\theta}$ (the two pairs coincide only at $x^\ast$). $\theta$ is continuous and strictly decreasing from $\pi$ to $0$. | **Proved** by Opus 5.5. Algebra verified independently. Logic refereed (no fatal gaps; 3 fixable points). | [`PROOF_angle_lemma.md`](PROOF_angle_lemma.md), [`REFEREE_1.md`](REFEREE_1.md), [`shots/09_passed.png`](shots/09_passed.png) |
+| 11 | For $n\le 60$, after mapping zeros to $\theta$, each slice of width $\pi/(n+2)$ holds at most one zero | Numerical | Colab output (not saved) |
+| 12 | Forgács–Tran ([1606.07125](https://arxiv.org/abs/1606.07125), [1601.02582](https://arxiv.org/abs/1601.02582)) do not apply directly, for three reasons. (a) The numerator is $1-t$. (b) The $x$-part has several terms. (c) $P$ has the negative zero $-1-\sqrt2$, and their result only covers large $n$. | Checked | — |
 
-## Side target: SymCat #19 (skew Schur Ehrhart h*-polynomials)
-3,220 new cases (|λ| ≤ 9, k ≤ 5, outside SymCat's checked |λ| ≤ 8, k ≤ 4): **0 failures**.
-Definition used still to be checked against SymCat's exact wording. shots/06_sym19.png.
+## Plan: Stage C (in progress)
 
-## Plan (Stage C)
-Let x_k(n) = θ⁻¹(kπ/(n+2)), k = 1..n+1. Prove sign G_n(x_k(n)) alternates for all n ≥ N0
-with explicit N0. Since rows ≤ 91 are verified exactly, any N0 ≤ 91 completes the D² proof.
+Let $x_k(n)=\theta^{-1}\!\big(k\pi/(n+2)\big)$ for $k=1,\dots,n+1$.
 
-## Credits / tools
-Computations: Python/sympy in Google Colab. Proof of items 6, 7, 9, 10: Claude Opus 5.5,
-verified independently. Research direction and verification: Sukhraj Sachdeva, with Claude.
+The goal is to prove that $\operatorname{sign} G_n(x_k(n))$ alternates in $k$ for all $n\ge N_0$, with $N_0$ given explicitly. Rows $n\le 91$ are already verified exactly, so **any explicit $N_0\le 91$ completes the $D^2$ half of the conjecture.**
+
+## Side target: SymCat #19 (skew Schur Ehrhart $h^\ast$-polynomials)
+
+We tested 3,220 new cases ($|\lambda|\le 9$, $k\le 5$), all outside SymCat's checked range of $|\lambda|\le 8$, $k\le 4$. There were **0 failures**.
+
+Our definition still needs checking against SymCat's exact wording. See [`shots/06_sym19.png`](shots/06_sym19.png).
+
+## Files
+
+| Path | Contents |
+|------|----------|
+| [`PROOF_angle_lemma.md`](PROOF_angle_lemma.md) | Proof of items 6, 7, 9 and 10 |
+| [`REFEREE_1.md`](REFEREE_1.md) | Referee report on that proof |
+| [`scripts/`](scripts/) | Exact checks: rows to 91, and verification of the lemma's algebra |
+| [`opus/`](opus/) | Opus's original verification scripts |
+| [`shots/`](shots/) | Screenshots of each computation |
+
+## Credits
+
+- Computations: Python/sympy in Google Colab.
+- Proofs of items 6, 7, 9 and 10: Claude Opus 5.5, checked independently.
+- Research direction and verification: Sukhraj Sachdeva, with Claude.
