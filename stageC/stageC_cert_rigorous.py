@@ -278,9 +278,12 @@ else:
     minMp, maxThp, maxE, minQ = amin(mps), amax(thps), amax(Es), amin(Qs)   # union-based: sound bounds
     if minMp > 0 and minQ > 1:
         lenN = 2 * maxE * maxThp / (minMp * minQ ** N0)
-        okW = (lenN * N0 < PI) and (arb(N0) > 1 / minQ.log())
+        # Failure set is centred at pi/4 with full length lenN. When 4 does not divide N the
+        # nearest grid point is >= pi/(4N) away, so we need lenN < pi/(2N), i.e. N*lenN < pi/2.
+        # (Round-2 ChatGPT referee: the earlier test '< PI' only gave "at most one grid point".)
+        okW = (lenN * N0 < PI / 2) and (arb(N0) > 1 / minQ.log())
         print(f'-1 window tau in [{W1[0]}, {W1[1]}]: sign m\'={sorted(sgm)} min|m\'|={fl(minMp):.3e} max|dtheta/dtau|={fl(maxThp):.3f} '
-              f'max e={fl(maxE):.3f} min q={fl(minQ):.3f}  N*len(N0)={fl(lenN * N0):.3e} < pi : {okW}')
+              f'max e={fl(maxE):.3f} min q={fl(minQ):.3f}  N*len(N0)={fl(lenN * N0):.3e} < pi/2 : {okW}')
     else:
         print('-1 window: min|m\'| or min q not certified positive / > 1')
 ok &= okW

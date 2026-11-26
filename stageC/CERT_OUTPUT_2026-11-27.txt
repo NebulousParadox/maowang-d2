@@ -1,0 +1,22 @@
+Google Colab, 27 Nov 2026, python-flint 0.9.0. Run after the C6 threshold fix (pi -> pi/2).
+
+!pip -q install python-flint
+!python stageC_exact.py
+!python stageC_cert_rigorous.py 12 0.05
+
+all Stage C exact checks passed
+python-flint self-test passed (flint version 0.9.0, sqrtpos present: False [not used])
+=== rigorous certificate run (python-flint arb, prec=64): N0 = 12 (N = n+2), lambda0 = 0.05 ===
+left boundary theta_s=2.080786230 psi < lam0: True
+right boundary tau_e=0.621171550 |psi| < lam0 and tau_e < |zeta|: True
+circle theta: boxes=798 fails=0 signs(m)=[1] via {'e': 599, 'arc': 0}
+Gamma - branch tau: boxes=796 fails=0 signs(m)=[1] via {'e': 598, 'arc': 0}
+Gamma + branch tau (theta>pi/4 side): boxes=402 fails=0 signs(m)=[1] via {'e': 401, 'arc': 0}
+Gamma + branch tau (theta<pi/4 side): boxes=400 fails=0 signs(m)=[-1] via {'e': 390, 'arc': 10}
+sign(m) per region: [[1], [1], [1], [-1]] (expected [1],[1],[1],[-1])
+-1 window tau in [0.5136380902050414, 0.5216380902050414]: sign m'=[-1] min|m'|=8.284e-01 max|dtheta/dtau|=7.419 max e=0.828 min q=3.653 N*len(N0)=3.157e-05 < pi/2 : True
+lambda-window left (lam=v): D2=0.3660 min beta=0.0809 min case2 slack=1.8962 ok=True
+lambda-window right (lam=i w): D2=0.3262 min beta=0.0533 min case2 slack=0.4633 ok=True
+lambda-window needs N > 6.13 ; N0=12: True
+
+CERTIFICATE PASSED for all N >= 12 (n >= 10)
